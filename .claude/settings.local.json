@@ -21,7 +21,13 @@
       "Bash(curl:*)",
       "Bash(test:*)",
       "Bash(dir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh:*)",
+      "Bash(cmd /c \"gh --version\")",
+      "Bash(powershell.exe -Command \"gh --version\")",
+      "Bash(powershell.exe -Command \"gh auth status\")",
+      "Bash(powershell.exe -Command \"gh repo create geekbyte-website --public --source=. --remote=origin --push\")"
     ],
     "deny": [],
     "ask": []
