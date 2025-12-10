@@ -247,6 +247,41 @@ header {
     filter: drop-shadow(0 2px 4px rgba(30, 64, 175, 0.15));
 }
 
+/* New Gator Logo Style */
+.logo-gator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-gator .gator-icon {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #c5a05e;
+    transition: var(--transition-smooth);
+}
+
+.logo-gator .gator-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(197, 160, 94, 0.3);
+}
+
+.logo-gator .wordmark {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.logo-gator .wordmark .geek {
+    color: var(--text-color);
+}
+
+.logo-gator .wordmark .byte {
+    color: var(--primary-color);
+}
+
 .logo h1 {
     font-size: 1.5rem;
     color: var(--primary-color);
@@ -1918,6 +1953,10 @@ header {
     gap: 2.5rem;
 }
 
+.services-detail-grid.four-column {
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .service-detail-card {
     background-color: white;
     padding: 2.5rem;
@@ -2348,6 +2387,7 @@ footer p {
     }
 
     .services-detail-grid,
+    .services-detail-grid.four-column,
     .ideal-grid,
     .engagement-grid,
     .case-studies-grid {
