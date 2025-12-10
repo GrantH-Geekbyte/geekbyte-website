@@ -531,7 +531,7 @@ header {
    Bio Section
    ========================================== */
 .bio-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background: var(--bg-light);
 }
 
@@ -608,7 +608,7 @@ header {
    ========================================== */
 .page-header {
     background: var(--gradient-dark);
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     text-align: center;
     color: white;
     position: relative;
@@ -738,7 +738,7 @@ header {
    Service Spotlight Section - Premium Cards
    ========================================== */
 .service-spotlight {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
     background: linear-gradient(180deg, #ffffff 0%, var(--slate-50) 100%);
     position: relative;
 }
@@ -762,7 +762,7 @@ header {
 .service-spotlight h2 {
     text-align: center;
     color: var(--text-color);
-    margin-bottom: 4rem;
+    margin-bottom: 1.5rem;
 }
 
 .spotlight-grid {
@@ -780,6 +780,12 @@ header {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.spotlight-card .btn-outline {
+    margin-top: auto;
 }
 
 .spotlight-card::before {
@@ -886,25 +892,25 @@ header {
    Features Section - Premium Cards
    ========================================== */
 .features {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
 .features h2 {
     text-align: center;
     color: var(--text-color);
-    margin-bottom: 4rem;
+    margin-bottom: 1.5rem;
 }
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
 }
 
 .feature-card {
     background: white;
-    padding: 3rem;
+    padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: var(--shadow);
     transition: var(--transition-slow);
@@ -913,6 +919,10 @@ header {
     flex-direction: column;
     position: relative;
     overflow: hidden;
+}
+
+.feature-card .feature-link {
+    margin-top: auto;
 }
 
 .feature-card::before {
@@ -994,7 +1004,7 @@ header {
    Why Fractional Section
    ========================================== */
 .why-fractional {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
     position: relative;
 }
@@ -1115,14 +1125,14 @@ header {
    Trust Section - Premium Stats
    ========================================== */
 .trust-section {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
     background: linear-gradient(180deg, var(--slate-50) 0%, #ffffff 100%);
 }
 
 .trust-section h2 {
     text-align: center;
     color: var(--text-color);
-    margin-bottom: 4rem;
+    margin-bottom: 1.5rem;
 }
 
 .stats-grid {
@@ -1251,7 +1261,7 @@ header {
 .final-cta,
 .service-cta,
 .testimonials-cta {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
     background: var(--gradient-dark);
     color: white;
     text-align: center;
@@ -1308,7 +1318,7 @@ header {
    Content Section (About page)
    ========================================== */
 .content {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
 }
 
 .about-intro {
@@ -1486,7 +1496,7 @@ header {
    Contact Section
    ========================================== */
 .contact-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
@@ -1691,7 +1701,7 @@ header {
    Testimonials Section - Premium Treatment
    ========================================== */
 .testimonials-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
@@ -1824,7 +1834,7 @@ header {
 
 /* Case Studies Section */
 .case-studies-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
 }
 
@@ -1873,7 +1883,7 @@ header {
    Service Page Sections
    ========================================== */
 .content-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
 }
 
@@ -1893,7 +1903,7 @@ header {
 }
 
 .services-detail-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
@@ -1936,7 +1946,7 @@ header {
 }
 
 .ideal-for-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
 }
 
@@ -1978,7 +1988,7 @@ header {
 }
 
 .how-it-works-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
@@ -2026,7 +2036,7 @@ header {
 }
 
 .engagement-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
 }
 
@@ -2095,7 +2105,7 @@ header {
 
 /* Experience Highlight Section (Board page) */
 .experience-highlight-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--slate-50);
 }
 
@@ -2140,7 +2150,7 @@ header {
 
 /* PE Value Section */
 .pe-value-section {
-    padding: 5rem 0;
+    padding: 3.5rem 0;
     background-color: var(--bg-color);
 }
 
@@ -2428,7 +2438,7 @@ footer p {
     }
 
     .hero {
-        padding: 5rem 0;
+        padding: 3.5rem 0;
     }
 
     .hero p,
