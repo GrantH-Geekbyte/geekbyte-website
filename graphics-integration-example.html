@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geekbyte Graphics Integration Example</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional styles for graphics integration */
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        .feature-graphic-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-graphic-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .hero-graphic {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .metrics-showcase {
+            background: white;
+            padding: 3rem;
+            border-radius: 1.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .value-cycle-display {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .architecture-display {
+            background: var(--slate-50);
+            padding: 3rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .hero-graphic {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <picture>
+                            <source srcset="images/logos/geekbyte-blue.webp" type="image/webp">
+                            <source srcset="images/logos/geekbyte-blue.jpg" type="image/jpeg">
+                            <img src="images/logos/geekbyte-blue.png" alt="Geekbyte LLC" class="logo-image">
+                        </picture>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li>
+                        <a href="index.html" class="active">
+                            <img src="images/graphics/nav-circuit-node.svg" alt="" class="nav-icon" role="presentation">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="services/fractional-cto.html">
+                            <img src="images/graphics/nav-pulse-indicator.svg" alt="" class="nav-icon" role="presentation">
+                            Fractional CTO
+                        </a>
+                    </li>
+                    <li>
+                        <a href="services/board-advisory.html">
+                            <img src="images/graphics/nav-executive-shield.svg" alt="" class="nav-icon" role="presentation">
+                            Board Advisory
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Value Cycle Graphic -->
+        <section class="hero">
+            <div class="container">
+                <p class="hero-eyebrow">Geekbyte LLC</p>
+                <h1>Technology Leadership for PE Value Creation</h1>
+                <p class="hero-subtitle">Fractional CTO and Board Advisory services that drive EBITDA improvement, platform modernization, and exit readiness.</p>
+
+                <div class="hero-graphic-container">
+                    <img src="images/graphics/hero-value-cycle.svg"
+                         alt="PE value creation cycle showing due diligence, technology strategy, value execution, and exit readiness"
+                         class="hero-graphic"
+                         width="400"
+                         height="400">
+                </div>
+
+                <div class="hero-cta">
+                    <a href="contact.html" class="btn btn-primary">Schedule a Partner Discussion</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Stack Section -->
+        <section id="services" class="features">
+            <div class="container">
+                <h2>Comprehensive Technology Architecture</h2>
+                <p class="section-intro">We provide end-to-end technology leadership across all layers of your technology stack.</p>
+
+                <div class="architecture-display">
+                    <img src="images/graphics/hero-architecture-stack.svg"
+                         alt="Three-layer technology architecture showing application layer, platform layer, and infrastructure layer with integration points"
+                         class="hero-graphic"
+                         width="400"
+                         height="300">
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/graphics/nav-circuit-node.svg" alt="" class="feature-graphic-icon" role="presentation">
+                        </div>
+                        <h3>Infrastructure Modernization</h3>
+                        <p>Cloud migration, platform optimization, and infrastructure scaling to support growth and reduce technical debt.</p>
+                        <span class="audience-tag">For: Portfolio Companies, CTOs</span>
+                        <a href="services/fractional-cto.html" class="feature-link">Learn More &rarr;</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/graphics/nav-pulse-indicator.svg" alt="" class="feature-graphic-icon" role="presentation">
+                        </div>
+                        <h3>Real-Time Technology Monitoring</h3>
+                        <p>Continuous oversight of technology health, performance metrics, and risk indicators to protect your investment.</p>
+                        <span class="audience-tag">For: PE Partners, Board Members</span>
+                        <a href="services/board-advisory.html" class="feature-link">Learn More &rarr;</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="images/graphics/nav-executive-shield.svg" alt="" class="feature-graphic-icon" role="presentation">
+                        </div>
+                        <h3>Technology Governance</h3>
+                        <p>Board-level technology oversight, risk management, and strategic guidance to ensure technology drives value creation.</p>
+                        <span class="audience-tag">For: PE Partners, Portfolio Company Boards</span>
+                        <a href="services/board-advisory.html" class="feature-link">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section with Dashboard Graphic -->
+        <section class="trust-section">
+            <div class="container">
+                <h2>Proven Technology Value Creation</h2>
+                <p class="section-intro">Our approach delivers measurable results across EBITDA improvement, technical debt reduction, and platform scalability.</p>
+
+                <div class="metrics-showcase">
+                    <img src="images/graphics/hero-dashboard-metrics.svg"
+                         alt="Technology value metrics dashboard showing 28% EBITDA improvement, 42% tech debt reduction, and 9.2 out of 10 scalability index with quarterly technology maturity progression"
+                         class="hero-graphic"
+                         width="500"
+                         height="350">
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">28%</span>
+                        <span class="stat-label">Average EBITDA Improvement</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">42%</span>
+                        <span class="stat-label">Technical Debt Reduction</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">9.2/10</span>
+                        <span class="stat-label">Platform Scalability Index</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Creation Process -->
+        <section class="why-fractional">
+            <div class="container">
+                <h2>Our PE Value Creation Process</h2>
+                <p class="section-intro">We guide portfolio companies through a structured technology transformation journey from due diligence to exit readiness.</p>
+
+                <div class="value-cycle-display">
+                    <img src="images/graphics/hero-value-cycle.svg"
+                         alt="Four-stage PE value creation cycle: due diligence, technology strategy, value execution, and exit readiness"
+                         class="hero-graphic"
+                         width="400"
+                         height="400">
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <img src="images/graphics/nav-executive-shield.svg" alt="" width="40" height="40" role="presentation">
+                        </div>
+                        <h4>Due Diligence</h4>
+                        <p>Comprehensive technical assessment to identify risks, opportunities, and technology value creation potential before you close.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <img src="images/graphics/nav-circuit-node.svg" alt="" width="40" height="40" role="presentation">
+                        </div>
+                        <h4>Technology Strategy</h4>
+                        <p>Strategic roadmap development aligned with value creation thesis, focusing on EBITDA improvement and exit readiness.</p>
+                    </div>
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <img src="images/graphics/nav-pulse-indicator.svg" alt="" width="40" height="40" role="presentation">
+                        </div>
+                        <h4>Value Execution</h4>
+                        <p>Hands-on CTO leadership to execute the technology roadmap, modernize platforms, and build scalable infrastructure.</p>
+                    </div>
+                </div>
+
+                <div class="section-cta">
+                    <a href="contact.html" class="btn btn-primary">Discuss Your Portfolio Needs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2>Ready to Accelerate Technology Value Creation?</h2>
+                <p>Whether you need technical due diligence, fractional CTO services, or board-level technology oversight, Geekbyte brings the PE perspective from multiple successful exits.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">Schedule a Partner Discussion</a>
+                    <a href="mailto:info@geekbyte.biz" class="btn btn-secondary">Email Directly</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <picture>
+                    <source srcset="images/logos/geekbyte-blue.webp" type="image/webp">
+                    <source srcset="images/logos/geekbyte-blue.jpg" type="image/jpeg">
+                    <img src="images/logos/geekbyte-blue.png" alt="Geekbyte LLC Logo" class="footer-logo" loading="lazy">
+                </picture>
+                <div class="footer-links">
+                    <a href="services/fractional-cto.html">Fractional CTO</a>
+                    <a href="services/board-advisory.html">Board Advisory</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <p>&copy; 2025 Geekbyte LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cycleGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#c5a05e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Center circle -->
+  <circle cx="200" cy="200" r="50" fill="none" stroke="#1e40af" stroke-width="2"/>
+  <text x="200" y="195" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">VALUE</text>
+  <text x="200" y="215" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">CREATION</text>
+
+  <!-- Outer ring segments -->
+  <circle cx="200" cy="200" r="130" fill="none" stroke="#1e40af" stroke-width="1" opacity="0.2"/>
+
+  <!-- Quadrant 1: Assessment (Top) -->
+  <path d="M 200 70 A 130 130 0 0 1 330 200" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="265" cy="105" r="35" fill="#1e40af" opacity="0.08"/>
+  <circle cx="265" cy="105" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+  <text x="265" y="100" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">DUE</text>
+  <text x="265" y="113" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">DILIGENCE</text>
+
+  <!-- Quadrant 2: Strategy (Right) -->
+  <path d="M 330 200 A 130 130 0 0 1 200 330" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="295" cy="265" r="35" fill="#1e40af" opacity="0.08"/>
+  <circle cx="295" cy="265" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+  <text x="295" y="260" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">TECH</text>
+  <text x="295" y="273" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">STRATEGY</text>
+
+  <!-- Quadrant 3: Execution (Bottom) -->
+  <path d="M 200 330 A 130 130 0 0 1 70 200" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="135" cy="295" r="35" fill="#1e40af" opacity="0.08"/>
+  <circle cx="135" cy="295" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+  <text x="135" y="290" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">VALUE</text>
+  <text x="135" y="303" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">EXECUTION</text>
+
+  <!-- Quadrant 4: Exit (Left) -->
+  <path d="M 70 200 A 130 130 0 0 1 200 70" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="105" cy="135" r="35" fill="#c5a05e" opacity="0.15"/>
+  <circle cx="105" cy="135" r="35" fill="none" stroke="#c5a05e" stroke-width="2"/>
+  <text x="105" y="130" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">EXIT</text>
+  <text x="105" y="143" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="11" font-weight="700">READY</text>
+
+  <!-- Directional arrows -->
+  <path d="M 315 175 L 325 185 L 320 195" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 225 315 L 215 325 L 205 320" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 85 225 L 75 215 L 80 205" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 175 85 L 185 75 L 195 80" stroke="#c5a05e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Gold accent connecting lines to center -->
+  <line x1="230" y1="175" x2="265" y2="135" stroke="#c5a05e" stroke-width="1" opacity="0.3" stroke-dasharray="3 3"/>
+  <line x1="225" y1="230" x2="265" y2="265" stroke="#c5a05e" stroke-width="1" opacity="0.3" stroke-dasharray="3 3"/>
+  <line x1="175" y1="225" x2="135" y2="265" stroke="#c5a05e" stroke-width="1" opacity="0.3" stroke-dasharray="3 3"/>
+  <line x1="170" y1="175" x2="135" y2="135" stroke="#c5a05e" stroke-width="1" opacity="0.3" stroke-dasharray="3 3"/>
+</svg>

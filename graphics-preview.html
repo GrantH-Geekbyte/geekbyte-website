@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geekbyte Technical Graphics - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2847 50%, #0f1b33 100%);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #c5a05e;
+            font-size: 1.25rem;
+            margin-bottom: 4rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .set-header {
+            font-size: 2rem;
+            margin: 4rem 0 2rem 0;
+            color: #c5a05e;
+            border-bottom: 2px solid #1e40af;
+            padding-bottom: 0.5rem;
+        }
+
+        .graphics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .graphic-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .graphic-title {
+            font-size: 1.5rem;
+            color: #0a1628;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .graphic-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .graphic-rationale {
+            background: rgba(30, 64, 175, 0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid #1e40af;
+            margin-bottom: 1.5rem;
+            color: #0a1628;
+            font-size: 0.95rem;
+        }
+
+        .graphic-display {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .code-block {
+            background: #0a1628;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .usage-note {
+            background: rgba(197, 160, 94, 0.1);
+            border: 1px solid #c5a05e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            color: #0a1628;
+        }
+
+        .usage-note strong {
+            color: #c5a05e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Geekbyte Technical Graphics</h1>
+        <p class="subtitle">Premium PE-Focused Design System</p>
+
+        <!-- SET 1: Navigation Graphics -->
+        <h2 class="set-header">SET 1: Navigation Bar Graphics</h2>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Subtle, professional graphics for navigation and brand elements</p>
+
+        <div class="graphics-grid">
+            <!-- Graphic 1.1 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">1.1 Circuit Node Connector</h3>
+                <p class="graphic-description">A minimalist circuit node pattern representing connectivity and technical infrastructure with clean geometric lines.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Conveys technical precision and interconnected systems. Perfect for subtle navigation enhancement.
+                </div>
+                <div class="graphic-display">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="3" fill="#1e40af"/>
+                        <circle cx="16" cy="16" r="2" fill="#c5a05e"/>
+                        <line x1="16" y1="19" x2="16" y2="28" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="16" y1="13" x2="16" y2="4" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="19" y1="16" x2="28" y2="16" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="13" y1="16" x2="4" y2="16" stroke="#1e40af" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="16" cy="4" r="2" fill="#1e40af" opacity="0.6"/>
+                        <circle cx="16" cy="28" r="2" fill="#1e40af" opacity="0.6"/>
+                        <circle cx="28" cy="16" r="2" fill="#1e40af" opacity="0.6"/>
+                        <circle cx="4" cy="16" r="2" fill="#1e40af" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Graphic 1.2 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">1.2 Executive Shield Icon</h3>
+                <p class="graphic-description">A refined shield with subtle circuit patterns inside, representing security, governance, and board-level oversight.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Communicates trust, protection, and executive oversight—perfect for a PE-focused consultancy.
+                </div>
+                <div class="graphic-display">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3L6 7V14C6 21 11 26 16 29C21 26 26 21 26 14V7L16 3Z" stroke="#1e40af" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                        <path d="M16 3L6 7V14C6 21 11 26 16 29C21 26 26 21 26 14V7L16 3Z" fill="url(#shieldGradient)" opacity="0.1"/>
+                        <line x1="16" y1="10" x2="16" y2="14" stroke="#c5a05e" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="13" y1="12" x2="19" y2="12" stroke="#c5a05e" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="13" cy="12" r="1" fill="#1e40af"/>
+                        <circle cx="19" cy="12" r="1" fill="#1e40af"/>
+                        <circle cx="16" cy="10" r="1" fill="#1e40af"/>
+                        <circle cx="16" cy="14" r="1" fill="#1e40af"/>
+                        <defs>
+                            <linearGradient id="shieldGradient" x1="6" y1="3" x2="26" y2="29" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#1e40af"/>
+                                <stop offset="100%" stop-color="#c5a05e"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Graphic 1.3 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">1.3 Technical Pulse Indicator</h3>
+                <p class="graphic-description">A minimal pulse line with animated node at center, representing real-time monitoring and technical health.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Suggests continuous monitoring and technical vitality. Clean and professional with subtle animation.
+                </div>
+                <div class="graphic-display">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 16H10L13 10L16 22L19 13L22 16H30" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <circle cx="16" cy="16" r="4" fill="#1e40af" opacity="0.1"/>
+                        <circle cx="16" cy="16" r="2.5" fill="#c5a05e"/>
+                        <circle cx="16" cy="16" r="6" stroke="#1e40af" stroke-width="1" opacity="0.3" fill="none">
+                            <animate attributeName="r" from="4" to="8" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- SET 2: Hero Graphics -->
+        <h2 class="set-header">SET 2: Homepage Hero/Feature Graphics</h2>
+        <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Larger, prominent graphics for hero sections and featured content</p>
+
+        <div class="graphics-grid">
+            <!-- Graphic 2.1 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">2.1 Technology Architecture Stack</h3>
+                <p class="graphic-description">A sophisticated 3D-perspective visualization of technology layers—infrastructure, platform, and application tiers—with connecting pathways.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Represents multi-layered approach to technology leadership. Shows architectural thinking and technical depth expected from a CTO/Board Advisor.
+                </div>
+                <div class="graphic-display">
+                    <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="layerGradient1" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1e40af" stop-opacity="0.2"/>
+                                <stop offset="100%" stop-color="#1e40af" stop-opacity="0.05"/>
+                            </linearGradient>
+                            <linearGradient id="layerGradient2" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1e40af" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#1e40af" stop-opacity="0.1"/>
+                            </linearGradient>
+                            <linearGradient id="layerGradient3" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1e40af" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#1e40af" stop-opacity="0.15"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="400" height="300" fill="#0a1628" opacity="0.02"/>
+                        <path d="M 80 60 L 320 60 L 300 100 L 100 100 Z" fill="url(#layerGradient1)" stroke="#1e40af" stroke-width="2"/>
+                        <text x="200" y="85" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">APPLICATION LAYER</text>
+                        <path d="M 70 130 L 330 130 L 310 180 L 90 180 Z" fill="url(#layerGradient2)" stroke="#1e40af" stroke-width="2"/>
+                        <text x="200" y="160" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">PLATFORM LAYER</text>
+                        <path d="M 60 210 L 340 210 L 320 260 L 80 260 Z" fill="url(#layerGradient3)" stroke="#1e40af" stroke-width="2"/>
+                        <text x="200" y="240" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">INFRASTRUCTURE LAYER</text>
+                        <line x1="150" y1="100" x2="140" y2="130" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                        <line x1="250" y1="100" x2="260" y2="130" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                        <line x1="160" y1="180" x2="150" y2="210" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                        <line x1="270" y1="180" x2="280" y2="210" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+                        <circle cx="150" cy="100" r="4" fill="#c5a05e"/>
+                        <circle cx="250" cy="100" r="4" fill="#c5a05e"/>
+                        <circle cx="140" cy="130" r="4" fill="#c5a05e"/>
+                        <circle cx="260" cy="130" r="4" fill="#c5a05e"/>
+                        <circle cx="160" cy="180" r="4" fill="#c5a05e"/>
+                        <circle cx="270" cy="180" r="4" fill="#c5a05e"/>
+                        <circle cx="150" cy="210" r="4" fill="#c5a05e"/>
+                        <circle cx="280" cy="210" r="4" fill="#c5a05e"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Graphic 2.2 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">2.2 PE Value Creation Cycle</h3>
+                <p class="graphic-description">A circular flow diagram showing the value creation cycle—Due Diligence, Strategy, Execution, Exit—with directional arrows and growth indicators.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Speaks directly to PE partners by visualizing the value creation journey and technology's role in driving multiples.
+                </div>
+                <div class="graphic-display">
+                    <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cycleGradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#1e40af"/>
+                                <stop offset="100%" stop-color="#c5a05e"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="200" r="50" fill="none" stroke="#1e40af" stroke-width="2"/>
+                        <text x="200" y="195" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">VALUE</text>
+                        <text x="200" y="215" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">CREATION</text>
+                        <circle cx="200" cy="200" r="130" fill="none" stroke="#1e40af" stroke-width="1" opacity="0.2"/>
+                        <path d="M 200 70 A 130 130 0 0 1 330 200" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="265" cy="105" r="35" fill="#1e40af" opacity="0.08"/>
+                        <circle cx="265" cy="105" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+                        <text x="265" y="100" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">DUE</text>
+                        <text x="265" y="113" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">DILIGENCE</text>
+                        <path d="M 330 200 A 130 130 0 0 1 200 330" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="295" cy="265" r="35" fill="#1e40af" opacity="0.08"/>
+                        <circle cx="295" cy="265" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+                        <text x="295" y="260" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">TECH</text>
+                        <text x="295" y="273" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">STRATEGY</text>
+                        <path d="M 200 330 A 130 130 0 0 1 70 200" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="135" cy="295" r="35" fill="#1e40af" opacity="0.08"/>
+                        <circle cx="135" cy="295" r="35" fill="none" stroke="#1e40af" stroke-width="2"/>
+                        <text x="135" y="290" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">VALUE</text>
+                        <text x="135" y="303" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">EXECUTION</text>
+                        <path d="M 70 200 A 130 130 0 0 1 200 70" fill="none" stroke="url(#cycleGradient)" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="105" cy="135" r="35" fill="#c5a05e" opacity="0.15"/>
+                        <circle cx="105" cy="135" r="35" fill="none" stroke="#c5a05e" stroke-width="2"/>
+                        <text x="105" y="130" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">EXIT</text>
+                        <text x="105" y="143" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="11" font-weight="700">READY</text>
+                        <path d="M 315 175 L 325 185 L 320 195" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M 225 315 L 215 325 L 205 320" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M 85 225 L 75 215 L 80 205" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <path d="M 175 85 L 185 75 L 195 80" stroke="#c5a05e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Graphic 2.3 -->
+            <div class="graphic-card">
+                <h3 class="graphic-title">2.3 Executive Dashboard Metrics</h3>
+                <p class="graphic-description">A stylized dashboard showing key metrics—EBITDA growth, tech debt reduction, scalability—with clean data visualization.</p>
+                <div class="graphic-rationale">
+                    <strong>Rationale:</strong> Speaks to PE partners who care about metrics and KPIs. Shows technology leadership that understands business outcomes.
+                </div>
+                <div class="graphic-display">
+                    <svg width="500" height="350" viewBox="0 0 500 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="barGradient1b" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1e40af"/>
+                                <stop offset="100%" stop-color="#1e40af" stop-opacity="0.6"/>
+                            </linearGradient>
+                            <linearGradient id="barGradient2b" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#c5a05e"/>
+                                <stop offset="100%" stop-color="#c5a05e" stop-opacity="0.6"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="500" height="350" fill="#0a1628" opacity="0.02" rx="12"/>
+                        <text x="30" y="40" fill="#0a1628" font-family="Inter, sans-serif" font-size="20" font-weight="700">TECHNOLOGY VALUE METRICS</text>
+                        <line x1="30" y1="55" x2="470" y2="55" stroke="#1e40af" stroke-width="2"/>
+                        <g transform="translate(30, 90)">
+                            <text x="0" y="0" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">EBITDA IMPROVEMENT</text>
+                            <rect x="0" y="10" width="130" height="28" fill="url(#barGradient1b)" rx="4"/>
+                            <text x="140" y="30" fill="#1e40af" font-family="Inter, sans-serif" font-size="16" font-weight="700">+28%</text>
+                            <path d="M 185 22 L 195 18 L 195 26 Z" fill="#c5a05e"/>
+                        </g>
+                        <g transform="translate(30, 160)">
+                            <text x="0" y="0" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">TECH DEBT REDUCTION</text>
+                            <rect x="0" y="10" width="110" height="28" fill="url(#barGradient1b)" rx="4"/>
+                            <text x="120" y="30" fill="#1e40af" font-family="Inter, sans-serif" font-size="16" font-weight="700">-42%</text>
+                            <path d="M 165 26 L 175 30 L 175 22 Z" fill="#1e40af"/>
+                        </g>
+                        <g transform="translate(30, 230)">
+                            <text x="0" y="0" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">SCALABILITY INDEX</text>
+                            <rect x="0" y="10" width="150" height="28" fill="url(#barGradient2b)" rx="4"/>
+                            <text x="160" y="30" fill="#c5a05e" font-family="Inter, sans-serif" font-size="16" font-weight="700">9.2/10</text>
+                            <circle cx="220" cy="24" r="6" fill="#c5a05e" opacity="0.3">
+                                <animate attributeName="r" from="6" to="10" dur="1.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" from="0.5" to="0" dur="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        <g transform="translate(280, 90)">
+                            <text x="0" y="0" fill="#0a1628" font-family="Inter, sans-serif" font-size="12" font-weight="600">TECHNOLOGY MATURITY</text>
+                            <line x1="0" y1="150" x2="190" y2="150" stroke="#1e40af" stroke-width="1" opacity="0.1"/>
+                            <line x1="0" y1="120" x2="190" y2="120" stroke="#1e40af" stroke-width="1" opacity="0.1"/>
+                            <line x1="0" y1="90" x2="190" y2="90" stroke="#1e40af" stroke-width="1" opacity="0.1"/>
+                            <line x1="0" y1="60" x2="190" y2="60" stroke="#1e40af" stroke-width="1" opacity="0.1"/>
+                            <line x1="0" y1="30" x2="190" y2="30" stroke="#1e40af" stroke-width="1" opacity="0.1"/>
+                            <path d="M 10 140 L 50 110 L 90 90 L 130 60 L 170 35" stroke="#1e40af" stroke-width="3" stroke-linecap="round" fill="none"/>
+                            <circle cx="10" cy="140" r="4" fill="#1e40af"/>
+                            <circle cx="50" cy="110" r="4" fill="#1e40af"/>
+                            <circle cx="90" cy="90" r="4" fill="#1e40af"/>
+                            <circle cx="130" cy="60" r="4" fill="#1e40af"/>
+                            <circle cx="170" cy="35" r="5" fill="#c5a05e"/>
+                            <path d="M 10 140 L 50 110 L 90 90 L 130 60 L 170 35 L 170 150 L 10 150 Z" fill="url(#barGradient1b)" opacity="0.15"/>
+                            <text x="10" y="170" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="9" opacity="0.6">Q1</text>
+                            <text x="50" y="170" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="9" opacity="0.6">Q2</text>
+                            <text x="90" y="170" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="9" opacity="0.6">Q3</text>
+                            <text x="130" y="170" text-anchor="middle" fill="#0a1628" font-family="Inter, sans-serif" font-size="9" opacity="0.6">Q4</text>
+                            <text x="170" y="170" text-anchor="middle" fill="#c5a05e" font-family="Inter, sans-serif" font-size="9" font-weight="700">EXIT</text>
+                        </g>
+                        <line x1="30" y1="310" x2="470" y2="310" stroke="#c5a05e" stroke-width="1" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="usage-note">
+            <strong>Usage Notes:</strong> All graphics are provided as inline SVG code for maximum flexibility and performance. The color palette strictly adheres to the Geekbyte brand guidelines: Deep Navy (#0a1628), Executive Blue (#1e40af), and Gold Accent (#c5a05e). Graphics are fully scalable and can be adjusted for size as needed. Navigation graphics are optimized for 32x32px display, while hero graphics scale from 400-500px width.
+        </div>
+    </div>
+</body>
+</html>

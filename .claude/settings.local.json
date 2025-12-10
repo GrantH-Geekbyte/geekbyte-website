@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(magick:*)",
+      "Bash(convert:*)",
+      "Bash(where:*)",
+      "Bash(python:*)",
+      "Bash(py --version)",
+      "Bash(node --version:*)",
+      "Bash(choco --version:*)",
+      "Bash(winget:*)",
+      "Bash(npm --version:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File optimize.ps1)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File optimize-aggressive.ps1)",
+      "Bash(ls:*)",
+      "Bash(for:*)",
+      "Bash(do cp \"$f\" \"$f%.jpg.webp\")",
+      "Bash(done)",
+      "Bash(awk:*)",
+      "Bash(mkdir:*)",
+      "Bash(curl:*)",
+      "Bash(test:*)",
+      "Bash(dir:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geekbyte Website - Architecture Diagram</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Geekbyte Brand Colors */
+            --deep-navy: #0f172a;
+            --tech-blue: #2563eb;
+            --light-slate: #f8fafc;
+            --circuit-blue: #1a5490;
+            --matrix-green: #00ff41;
+            --gold-accent: #d4af37;
+            --border-color: #e2e8f0;
+            --text-light: #64748b;
+            --bg-gradient: linear-gradient(135deg, #2563eb 0%, #1a5490 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--light-slate);
+            color: var(--deep-navy);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .diagram-header {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .diagram-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .diagram-header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .summary-card h2 {
+            color: var(--tech-blue);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-card {
+            background: var(--light-slate);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--tech-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--tech-blue);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .diagram-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .diagram-section h3 {
+            color: var(--tech-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-gradient);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* SVG Styles */
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node:hover rect,
+        .node:hover circle {
+            filter: brightness(1.1);
+            stroke-width: 3;
+        }
+
+        .node:hover text {
+            font-weight: 600;
+        }
+
+        .arrow {
+            stroke-width: 2;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+
+        .arrow-dashed {
+            stroke-dasharray: 5,5;
+        }
+
+        /* Legend */
+        .legend {
+            background: var(--light-slate);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 0.25rem;
+            border: 2px solid var(--deep-navy);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .diagram-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .metadata {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .diagram-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .diagram-section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--border-color);
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--deep-navy);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="diagram-header">
+        <h1>Geekbyte Website - Architecture Diagram</h1>
+        <p>Comprehensive Visual Documentation of System Architecture</p>
+        <div class="metadata">
+            <div class="metadata-item">
+                <span>📅</span>
+                <span>Date: November 7, 2025</span>
+            </div>
+            <div class="metadata-item">
+                <span>🏗️</span>
+                <span>Version: 2.0 (Static HTML)</span>
+            </div>
+            <div class="metadata-item">
+                <span>🎨</span>
+                <span>Design System: Geekbyte Brand</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+        <div class="summary-card">
+            <h2>Architecture Overview</h2>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                The Geekbyte website is a modern, performant static site built with vanilla HTML5, CSS3, and JavaScript.
+                The architecture prioritizes simplicity, performance, and maintainability while delivering a professional user experience.
+            </p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">HTML Pages</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">96.3%</div>
+                    <div class="metric-label">Asset Optimization</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">196 KB</div>
+                    <div class="metric-label">Total Image Size</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Static Content</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">Image Formats</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Zero</div>
+                    <div class="metric-label">Dependencies</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- File Structure Diagram -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">1</span>
+                File Structure & Organization
+            </h3>
+
+            <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#2563eb" />
+                    </marker>
+                    <linearGradient id="folderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="htmlGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1a5490;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Root -->
+                <g class="node">
+                    <rect x="500" y="20" width="200" height="60" rx="8" fill="url(#folderGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="600" y="45" font-size="16" font-weight="700" fill="#0f172a" text-anchor="middle">📁 Website Root</text>
+                    <text x="600" y="65" font-size="12" fill="#0f172a" text-anchor="middle" opacity="0.8">Project Directory</text>
+                </g>
+
+                <!-- HTML Files -->
+                <g class="node">
+                    <rect x="50" y="150" width="160" height="50" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="130" y="180" font-size="14" font-weight="600" fill="white" text-anchor="middle">📄 index.html</text>
+                </g>
+                <line x1="550" y1="80" x2="130" y2="150" class="arrow" stroke="#2563eb"/>
+
+                <g class="node">
+                    <rect x="250" y="150" width="160" height="50" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="330" y="180" font-size="14" font-weight="600" fill="white" text-anchor="middle">📄 about.html</text>
+                </g>
+                <line x1="570" y1="80" x2="330" y2="150" class="arrow" stroke="#2563eb"/>
+
+                <g class="node">
+                    <rect x="450" y="150" width="200" height="50" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="550" y="180" font-size="14" font-weight="600" fill="white" text-anchor="middle">📄 testimonials.html</text>
+                </g>
+                <line x1="600" y1="80" x2="550" y2="150" class="arrow" stroke="#2563eb"/>
+
+                <g class="node">
+                    <rect x="690" y="150" width="170" height="50" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="775" y="180" font-size="14" font-weight="600" fill="white" text-anchor="middle">📄 contact.html</text>
+                </g>
+                <line x1="630" y1="80" x2="775" y2="150" class="arrow" stroke="#2563eb"/>
+
+                <!-- Directories -->
+                <g class="node">
+                    <rect x="900" y="150" width="140" height="50" rx="6" fill="url(#folderGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="970" y="180" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">📁 css/</text>
+                </g>
+                <line x1="650" y1="80" x2="970" y2="150" class="arrow" stroke="#2563eb"/>
+
+                <!-- CSS Files -->
+                <g class="node">
+                    <rect x="900" y="240" width="140" height="45" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="970" y="267" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">style.css</text>
+                </g>
+                <line x1="970" y1="200" x2="970" y2="240" class="arrow" stroke="#2563eb"/>
+
+                <!-- JS Directory -->
+                <g class="node">
+                    <rect x="50" y="300" width="140" height="50" rx="6" fill="url(#folderGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="120" y="330" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">📁 js/</text>
+                </g>
+                <line x1="550" y1="80" x2="120" y2="300" class="arrow arrow-dashed" stroke="#2563eb"/>
+
+                <g class="node">
+                    <rect x="50" y="390" width="140" height="45" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="120" y="417" font-size="13" font-weight="500" fill="#0f172a" text-anchor="middle">main.js</text>
+                </g>
+                <line x1="120" y1="350" x2="120" y2="390" class="arrow" stroke="#2563eb"/>
+
+                <!-- Images Directory -->
+                <g class="node">
+                    <rect x="250" y="300" width="160" height="50" rx="6" fill="url(#folderGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="330" y="330" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">📁 images/</text>
+                </g>
+                <line x1="570" y1="80" x2="330" y2="300" class="arrow arrow-dashed" stroke="#2563eb"/>
+
+                <!-- Image Subdirectories -->
+                <g class="node">
+                    <rect x="230" y="390" width="90" height="40" rx="6" fill="#f8fafc" stroke="#d4af37" stroke-width="2"/>
+                    <text x="275" y="415" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">logos/</text>
+                </g>
+                <line x1="310" y1="350" x2="275" y2="390" class="arrow" stroke="#d4af37"/>
+
+                <g class="node">
+                    <rect x="340" y="390" width="90" height="40" rx="6" fill="#f8fafc" stroke="#d4af37" stroke-width="2"/>
+                    <text x="385" y="415" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">icons/</text>
+                </g>
+                <line x1="330" y1="350" x2="385" y2="390" class="arrow" stroke="#d4af37"/>
+
+                <!-- Brand Directory -->
+                <g class="node">
+                    <rect x="470" y="300" width="140" height="50" rx="6" fill="url(#folderGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="540" y="330" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle">📁 brand/</text>
+                </g>
+                <line x1="590" y1="80" x2="540" y2="300" class="arrow arrow-dashed" stroke="#2563eb"/>
+
+                <g class="node">
+                    <rect x="450" y="390" width="180" height="40" rx="6" fill="#f8fafc" stroke="#d4af37" stroke-width="2"/>
+                    <text x="540" y="415" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">Design Assets</text>
+                </g>
+                <line x1="540" y1="350" x2="540" y2="390" class="arrow" stroke="#d4af37"/>
+
+                <!-- Archive Directory -->
+                <g class="node">
+                    <rect x="670" y="300" width="160" height="50" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="2" stroke-dasharray="4"/>
+                    <text x="750" y="330" font-size="14" font-weight="600" fill="#64748b" text-anchor="middle">📁 archived/</text>
+                </g>
+                <line x1="610" y1="80" x2="750" y2="300" class="arrow arrow-dashed" stroke="#64748b"/>
+
+                <g class="node">
+                    <rect x="670" y="390" width="160" height="40" rx="6" fill="#f8fafc" stroke="#64748b" stroke-width="2" opacity="0.7"/>
+                    <text x="750" y="415" font-size="12" font-weight="500" fill="#64748b" text-anchor="middle">Next.js Version</text>
+                </g>
+                <line x1="750" y1="350" x2="750" y2="390" class="arrow" stroke="#64748b"/>
+
+                <!-- File Size Annotations -->
+                <g>
+                    <rect x="50" y="480" width="280" height="100" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="190" y="505" font-size="14" font-weight="600" fill="#2563eb" text-anchor="middle">Asset Statistics</text>
+                    <text x="60" y="530" font-size="12" fill="#0f172a">Images (Optimized): 196 KB</text>
+                    <text x="60" y="550" font-size="12" fill="#0f172a">CSS: ~15 KB</text>
+                    <text x="60" y="570" font-size="12" fill="#0f172a">JavaScript: ~8 KB</text>
+                </g>
+
+                <g>
+                    <rect x="370" y="480" width="280" height="100" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                    <text x="510" y="505" font-size="14" font-weight="600" fill="#10b981" text-anchor="middle">Optimization Impact</text>
+                    <text x="380" y="530" font-size="12" fill="#0f172a">Original Size: 5.31 MB</text>
+                    <text x="380" y="550" font-size="12" fill="#0f172a">Optimized Size: 196 KB</text>
+                    <text x="380" y="570" font-size="12" font-weight="600" fill="#10b981">Reduction: 96.3%</text>
+                </g>
+
+                <!-- Production vs Archive -->
+                <g>
+                    <rect x="700" y="480" width="280" height="100" rx="8" fill="#fef3c7" stroke="#d4af37" stroke-width="2"/>
+                    <text x="840" y="505" font-size="14" font-weight="600" fill="#d4af37" text-anchor="middle">File Organization</text>
+                    <text x="710" y="530" font-size="12" fill="#0f172a">✅ Production: 4 HTML + Assets</text>
+                    <text x="710" y="550" font-size="12" fill="#0f172a">📦 Archive: Next.js version</text>
+                    <text x="710" y="570" font-size="12" fill="#0f172a">🎨 Brand: Design files</text>
+                </g>
+            </svg>
+
+            <div class="legend">
+                <div class="legend-title">Legend</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #2563eb, #1a5490);"></div>
+                        <span>HTML Pages</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #d4af37, #b8941f);"></div>
+                        <span>Directories</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f8fafc; border-color: #2563eb;"></div>
+                        <span>Assets</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #e2e8f0; border-color: #64748b; border-style: dashed;"></div>
+                        <span>Archived</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Architecture & Navigation -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">2</span>
+                Page Architecture & Navigation Flow
+            </h3>
+
+            <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="nav-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#2563eb" />
+                    </marker>
+                    <marker id="cta-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+                    </marker>
+                </defs>
+
+                <!-- Shared Components -->
+                <g class="node">
+                    <rect x="450" y="20" width="300" height="80" rx="8" fill="#1a5490" stroke="#0f172a" stroke-width="2"/>
+                    <text x="600" y="50" font-size="18" font-weight="700" fill="white" text-anchor="middle">Shared Components</text>
+                    <text x="600" y="75" font-size="14" fill="white" text-anchor="middle" opacity="0.9">Header Navigation + Footer</text>
+                </g>
+
+                <!-- Pages -->
+                <g class="node">
+                    <rect x="50" y="180" width="240" height="180" rx="12" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="3"/>
+                    <text x="170" y="215" font-size="18" font-weight="700" fill="white" text-anchor="middle">🏠 Home Page</text>
+                    <text x="170" y="240" font-size="12" fill="white" text-anchor="middle" opacity="0.9">index.html</text>
+                    <rect x="70" y="255" width="200" height="90" rx="6" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1"/>
+                    <text x="80" y="275" font-size="12" font-weight="600" fill="white">• Hero Section</text>
+                    <text x="80" y="295" font-size="12" fill="white">• Services Overview</text>
+                    <text x="80" y="315" font-size="12" fill="white">• CTA: "Get Started"</text>
+                    <text x="80" y="335" font-size="11" fill="#00ff41" font-weight="600">→ Links to Contact</text>
+                </g>
+                <line x1="600" y1="100" x2="170" y2="180" class="arrow" stroke="#2563eb" marker-end="url(#nav-arrow)"/>
+
+                <g class="node">
+                    <rect x="340" y="180" width="240" height="180" rx="12" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="3"/>
+                    <text x="460" y="215" font-size="18" font-weight="700" fill="white" text-anchor="middle">👤 About Page</text>
+                    <text x="460" y="240" font-size="12" fill="white" text-anchor="middle" opacity="0.9">about.html</text>
+                    <rect x="360" y="255" width="200" height="90" rx="6" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1"/>
+                    <text x="370" y="275" font-size="12" font-weight="600" fill="white">• Company Story</text>
+                    <text x="370" y="295" font-size="12" fill="white">• Core Values</text>
+                    <text x="370" y="315" font-size="12" fill="white">• Mission Statement</text>
+                    <text x="370" y="335" font-size="12" fill="white">• Team Information</text>
+                </g>
+                <line x1="600" y1="100" x2="460" y2="180" class="arrow" stroke="#2563eb" marker-end="url(#nav-arrow)"/>
+
+                <g class="node">
+                    <rect x="630" y="180" width="240" height="180" rx="12" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="3"/>
+                    <text x="750" y="215" font-size="18" font-weight="700" fill="white" text-anchor="middle">⭐ Testimonials</text>
+                    <text x="750" y="240" font-size="12" fill="white" text-anchor="middle" opacity="0.9">testimonials.html</text>
+                    <rect x="650" y="255" width="200" height="90" rx="6" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1"/>
+                    <text x="660" y="275" font-size="12" font-weight="600" fill="white">• Client Reviews</text>
+                    <text x="660" y="295" font-size="12" fill="white">• Success Stories</text>
+                    <text x="660" y="315" font-size="12" fill="white">• Logo Grid</text>
+                    <text x="660" y="335" font-size="12" fill="white">• Social Proof</text>
+                </g>
+                <line x1="600" y1="100" x2="750" y2="180" class="arrow" stroke="#2563eb" marker-end="url(#nav-arrow)"/>
+
+                <g class="node">
+                    <rect x="920" y="180" width="240" height="180" rx="12" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="3"/>
+                    <text x="1040" y="215" font-size="18" font-weight="700" fill="white" text-anchor="middle">📧 Contact Page</text>
+                    <text x="1040" y="240" font-size="12" fill="white" text-anchor="middle" opacity="0.9">contact.html</text>
+                    <rect x="940" y="255" width="200" height="90" rx="6" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1"/>
+                    <text x="950" y="275" font-size="12" font-weight="600" fill="white">• Contact Form</text>
+                    <text x="950" y="295" font-size="12" fill="white">• Email/Phone Info</text>
+                    <text x="950" y="315" font-size="12" fill="white">• Business Hours</text>
+                    <text x="950" y="335" font-size="12" fill="white">• Location Details</text>
+                </g>
+                <line x1="600" y1="100" x2="1040" y2="180" class="arrow" stroke="#2563eb" marker-end="url(#nav-arrow)"/>
+
+                <!-- Navigation Links -->
+                <path d="M 290 270 Q 315 270 340 270" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#nav-arrow)"/>
+                <path d="M 580 270 Q 605 270 630 270" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#nav-arrow)"/>
+                <path d="M 870 270 Q 895 270 920 270" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#nav-arrow)"/>
+
+                <!-- CTA Conversion Path -->
+                <path d="M 170 360 Q 170 450 600 450 Q 1040 450 1040 360" stroke="#10b981" stroke-width="4" fill="none" marker-end="url(#cta-arrow)" stroke-dasharray="8,4"/>
+
+                <g>
+                    <rect x="500" y="430" width="200" height="50" rx="8" fill="#10b981" stroke="#0f172a" stroke-width="2"/>
+                    <text x="600" y="450" font-size="14" font-weight="700" fill="white" text-anchor="middle">Conversion Path</text>
+                    <text x="600" y="468" font-size="12" fill="white" text-anchor="middle">Hero CTA → Contact</text>
+                </g>
+
+                <!-- Navigation Pattern -->
+                <g>
+                    <rect x="100" y="550" width="320" height="120" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="260" y="580" font-size="16" font-weight="700" fill="#2563eb" text-anchor="middle">Navigation Pattern</text>
+                    <text x="110" y="605" font-size="13" fill="#0f172a">• Consistent header on all pages</text>
+                    <text x="110" y="625" font-size="13" fill="#0f172a">• Active state highlights current page</text>
+                    <text x="110" y="645" font-size="13" fill="#0f172a">• Mobile hamburger menu (< 768px)</text>
+                    <text x="110" y="665" font-size="13" fill="#0f172a">• Sticky navigation for easy access</text>
+                </g>
+
+                <g>
+                    <rect x="460" y="550" width="320" height="120" rx="8" fill="#f8fafc" stroke="#10b981" stroke-width="2"/>
+                    <text x="620" y="580" font-size="16" font-weight="700" fill="#10b981" text-anchor="middle">User Journey</text>
+                    <text x="470" y="605" font-size="13" fill="#0f172a">1. Land on Home → See services</text>
+                    <text x="470" y="625" font-size="13" fill="#0f172a">2. Learn More → About page</text>
+                    <text x="470" y="645" font-size="13" fill="#0f172a">3. Build Trust → Testimonials</text>
+                    <text x="470" y="665" font-size="13" fill="#0f172a">4. Take Action → Contact form</text>
+                </g>
+
+                <g>
+                    <rect x="820" y="550" width="320" height="120" rx="8" fill="#fef3c7" stroke="#d4af37" stroke-width="2"/>
+                    <text x="980" y="580" font-size="16" font-weight="700" fill="#d4af37" text-anchor="middle">Shared Footer</text>
+                    <text x="830" y="605" font-size="13" fill="#0f172a">• Geekbyte logo (optimized)</text>
+                    <text x="830" y="625" font-size="13" fill="#0f172a">• Copyright information</text>
+                    <text x="830" y="645" font-size="13" fill="#0f172a">• Consistent branding</text>
+                    <text x="830" y="665" font-size="13" fill="#0f172a">• Lazy-loaded images</text>
+                </g>
+            </svg>
+        </section>
+
+        <!-- Component Dependencies -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">3</span>
+                Component Dependency Graph
+            </h3>
+
+            <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="dep-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#1a5490" />
+                    </marker>
+                </defs>
+
+                <!-- HTML Layer -->
+                <g>
+                    <text x="100" y="40" font-size="18" font-weight="700" fill="#2563eb">HTML Pages</text>
+                    <rect x="50" y="50" width="350" height="180" rx="8" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8,4"/>
+                </g>
+
+                <g class="node">
+                    <rect x="70" y="80" width="140" height="60" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="140" y="115" font-size="14" font-weight="600" fill="white" text-anchor="middle">index.html</text>
+                </g>
+
+                <g class="node">
+                    <rect x="70" y="155" width="140" height="60" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="140" y="190" font-size="14" font-weight="600" fill="white" text-anchor="middle">about.html</text>
+                </g>
+
+                <g class="node">
+                    <rect x="230" y="80" width="150" height="60" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="305" y="115" font-size="14" font-weight="600" fill="white" text-anchor="middle">testimonials.html</text>
+                </g>
+
+                <g class="node">
+                    <rect x="230" y="155" width="150" height="60" rx="6" fill="url(#htmlGrad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="305" y="190" font-size="14" font-weight="600" fill="white" text-anchor="middle">contact.html</text>
+                </g>
+
+                <!-- CSS Layer -->
+                <g>
+                    <text x="500" y="40" font-size="18" font-weight="700" fill="#2563eb">Stylesheets</text>
+                    <rect x="480" y="50" width="200" height="180" rx="8" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8,4"/>
+                </g>
+
+                <g class="node">
+                    <rect x="500" y="110" width="160" height="80" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="580" y="140" font-size="15" font-weight="600" fill="#2563eb" text-anchor="middle">style.css</text>
+                    <text x="580" y="160" font-size="11" fill="#64748b" text-anchor="middle">~15 KB</text>
+                    <text x="580" y="178" font-size="11" fill="#64748b" text-anchor="middle">Brand Variables</text>
+                </g>
+
+                <!-- Dependencies from HTML to CSS -->
+                <path d="M 210 110 Q 350 110 500 140" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)"/>
+                <path d="M 210 185 Q 350 180 500 155" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)"/>
+                <path d="M 380 110 Q 440 120 500 140" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)"/>
+                <path d="M 380 185 Q 440 175 500 155" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)"/>
+
+                <!-- JavaScript Layer -->
+                <g>
+                    <text x="750" y="40" font-size="18" font-weight="700" fill="#2563eb">JavaScript</text>
+                    <rect x="730" y="50" width="200" height="180" rx="8" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8,4"/>
+                </g>
+
+                <g class="node">
+                    <rect x="750" y="110" width="160" height="80" rx="6" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="830" y="140" font-size="15" font-weight="600" fill="#2563eb" text-anchor="middle">main.js</text>
+                    <text x="830" y="160" font-size="11" fill="#64748b" text-anchor="middle">~8 KB</text>
+                    <text x="830" y="178" font-size="11" fill="#64748b" text-anchor="middle">ES6+ Features</text>
+                </g>
+
+                <!-- Dependencies from HTML to JS -->
+                <path d="M 210 110 Q 480 80 750 140" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)" stroke-dasharray="4,2"/>
+                <path d="M 210 185 Q 480 190 750 155" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)" stroke-dasharray="4,2"/>
+                <path d="M 380 110 Q 565 90 750 140" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)" stroke-dasharray="4,2"/>
+                <path d="M 380 185 Q 565 180 750 155" stroke="#1a5490" stroke-width="2" fill="none" marker-end="url(#dep-arrow)" stroke-dasharray="4,2"/>
+
+                <!-- External Dependencies -->
+                <g>
+                    <text x="1000" y="40" font-size="18" font-weight="700" fill="#10b981">External</text>
+                    <rect x="980" y="50" width="180" height="180" rx="8" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="8,4"/>
+                </g>
+
+                <g class="node">
+                    <rect x="995" y="90" width="150" height="55" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                    <text x="1070" y="115" font-size="13" font-weight="600" fill="#10b981" text-anchor="middle">Google Fonts</text>
+                    <text x="1070" y="133" font-size="10" fill="#64748b" text-anchor="middle">Inter Family</text>
+                </g>
+
+                <path d="M 660 150 Q 820 120 995 118" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#dep-arrow)" stroke-dasharray="6,3"/>
+
+                <g class="node">
+                    <rect x="995" y="160" width="150" height="55" rx="6" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                    <text x="1070" y="185" font-size="13" font-weight="600" fill="#ef4444" text-anchor="middle">No Build Tools</text>
+                    <text x="1070" y="203" font-size="10" fill="#64748b" text-anchor="middle">Zero npm deps</text>
+                </g>
+
+                <!-- Image Assets -->
+                <g>
+                    <text x="100" y="290" font-size="18" font-weight="700" fill="#d4af37">Image Assets</text>
+                    <rect x="50" y="300" width="1100" height="180" rx="8" fill="none" stroke="#d4af37" stroke-width="2" stroke-dasharray="8,4"/>
+                </g>
+
+                <!-- Picture Element Strategy -->
+                <g class="node">
+                    <rect x="80" y="330" width="200" height="130" rx="8" fill="#fef3c7" stroke="#d4af37" stroke-width="2"/>
+                    <text x="180" y="355" font-size="15" font-weight="600" fill="#d4af37" text-anchor="middle">&lt;picture&gt; Strategy</text>
+                    <rect x="95" y="370" width="170" height="80" rx="6" fill="white" stroke="#d4af37" stroke-width="1"/>
+                    <text x="105" y="390" font-size="12" fill="#0f172a">1. WebP (modern)</text>
+                    <text x="105" y="410" font-size="12" fill="#0f172a">2. JPEG (fallback)</text>
+                    <text x="105" y="430" font-size="12" fill="#0f172a">3. PNG (legacy)</text>
+                    <text x="180" y="448" font-size="10" fill="#64748b" text-anchor="middle">Progressive Enhancement</text>
+                </g>
+
+                <g class="node">
+                    <rect x="310" y="330" width="180" height="130" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                    <text x="400" y="355" font-size="15" font-weight="600" fill="#10b981" text-anchor="middle">Logo Assets</text>
+                    <rect x="325" y="370" width="150" height="80" rx="6" fill="white" stroke="#10b981" stroke-width="1"/>
+                    <text x="335" y="390" font-size="11" fill="#0f172a">geekbyte-blue.*</text>
+                    <text x="335" y="408" font-size="11" fill="#0f172a">• WebP: 15 KB</text>
+                    <text x="335" y="426" font-size="11" fill="#0f172a">• JPEG: 22 KB</text>
+                    <text x="335" y="444" font-size="11" fill="#0f172a">• PNG: 48 KB</text>
+                </g>
+
+                <g class="node">
+                    <rect x="520" y="330" width="200" height="130" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                    <text x="620" y="355" font-size="15" font-weight="600" fill="#2563eb" text-anchor="middle">Client Logos</text>
+                    <rect x="535" y="370" width="170" height="80" rx="6" fill="white" stroke="#2563eb" stroke-width="1"/>
+                    <text x="545" y="390" font-size="11" fill="#0f172a">Optimized PNGs</text>
+                    <text x="545" y="408" font-size="11" fill="#0f172a">Max height: 60px</text>
+                    <text x="545" y="426" font-size="11" fill="#0f172a">Average: 8-12 KB</text>
+                    <text x="545" y="444" font-size="11" fill="#0f172a">Total: ~140 KB</text>
+                </g>
+
+                <g class="node">
+                    <rect x="750" y="330" width="180" height="130" rx="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                    <text x="840" y="355" font-size="15" font-weight="600" fill="#9333ea" text-anchor="middle">Loading Strategy</text>
+                    <rect x="765" y="370" width="150" height="80" rx="6" fill="white" stroke="#9333ea" stroke-width="1"/>
+                    <text x="775" y="390" font-size="11" fill="#0f172a">• Eager: Above fold</text>
+                    <text x="775" y="408" font-size="11" fill="#0f172a">• Lazy: Below fold</text>
+                    <text x="775" y="426" font-size="11" fill="#0f172a">• Preconnect: Fonts</text>
+                    <text x="775" y="444" font-size="11" fill="#0f172a">• Crossorigin</text>
+                </g>
+
+                <g class="node">
+                    <rect x="960" y="330" width="180" height="130" rx="8" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+                    <text x="1050" y="355" font-size="15" font-weight="600" fill="#ec4899" text-anchor="middle">Performance</text>
+                    <rect x="975" y="370" width="150" height="80" rx="6" fill="white" stroke="#ec4899" stroke-width="1"/>
+                    <text x="985" y="390" font-size="11" font-weight="600" fill="#10b981">Total: 196 KB</text>
+                    <text x="985" y="408" font-size="11" fill="#0f172a">Optimized: 96.3%</text>
+                    <text x="985" y="426" font-size="11" fill="#0f172a">WebP priority</text>
+                    <text x="985" y="444" font-size="11" fill="#0f172a">Lazy loading</text>
+                </g>
+
+                <!-- Loading Flow -->
+                <g>
+                    <rect x="100" y="540" width="1000" height="80" rx="8" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="600" y="565" font-size="16" font-weight="700" fill="#2563eb" text-anchor="middle">Asset Loading Flow</text>
+                    <text x="110" y="590" font-size="13" fill="#0f172a">1. HTML Parse → 2. CSS Load (render-blocking) → 3. Fonts Preconnect → 4. Images (progressive) → 5. JS Load (deferred) → 6. Interactive</text>
+                    <text x="110" y="608" font-size="11" fill="#64748b">Total Page Weight: ~220 KB (HTML + CSS + JS + Images) | First Contentful Paint: &lt;1.5s on 3G</text>
+                </g>
+
+                <!-- Dependency Notes -->
+                <g>
+                    <rect x="100" y="660" width="450" height="100" rx="8" fill="#fef3c7" stroke="#d4af37" stroke-width="2"/>
+                    <text x="325" y="690" font-size="15" font-weight="600" fill="#d4af37" text-anchor="middle">Dependency Philosophy</text>
+                    <text x="110" y="715" font-size="12" fill="#0f172a">• Zero npm dependencies</text>
+                    <text x="110" y="735" font-size="12" fill="#0f172a">• No build process required</text>
+                    <text x="110" y="755" font-size="12" fill="#0f172a">• Single external dependency: Google Fonts (Inter)</text>
+                </g>
+
+                <g>
+                    <rect x="600" y="660" width="500" height="100" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                    <text x="850" y="690" font-size="15" font-weight="600" fill="#10b981" text-anchor="middle">Performance Benefits</text>
+                    <text x="610" y="715" font-size="12" fill="#0f172a">• Fast deployment: Simple file upload or git push</text>
+                    <text x="610" y="735" font-size="12" fill="#0f172a">• Predictable caching: Static assets with immutable hashes</text>
+                    <text x="610" y="755" font-size="12" fill="#0f172a">• CDN-friendly: All files servable from edge locations</text>
+                </g>
+            </svg>
+        </section>
+
+        <!-- Asset Optimization Pipeline -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">4</span>
+                Asset Optimization Pipeline
+            </h3>
+
+            <svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <marker id="opt-arrow" markerWidth="12" markerHeight="12" refX="10" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+                    </marker>
+                    <linearGradient id="reduction-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Original Assets -->
+                <g class="node">
+                    <rect x="50" y="80" width="220" height="180" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="3"/>
+                    <text x="160" y="115" font-size="18" font-weight="700" fill="#ef4444" text-anchor="middle">Original Assets</text>
+                    <rect x="70" y="135" width="180" height="110" rx="6" fill="white" stroke="#ef4444" stroke-width="2"/>
+                    <text x="160" y="165" font-size="32" font-weight="700" fill="#ef4444" text-anchor="middle">5.31 MB</text>
+                    <text x="80" y="195" font-size="12" fill="#0f172a">• High-res images</text>
+                    <text x="80" y="215" font-size="12" fill="#0f172a">• Uncompressed PNGs</text>
+                    <text x="80" y="235" font-size="12" fill="#0f172a">• Multiple formats</text>
+                </g>
+
+                <!-- Optimization Process -->
+                <g>
+                    <rect x="330" y="100" width="260" height="140" rx="10" fill="url(#reduction-grad)" stroke="#0f172a" stroke-width="2"/>
+                    <text x="460" y="130" font-size="16" font-weight="700" fill="white" text-anchor="middle">Optimization Process</text>
+                    <rect x="345" y="145" width="230" height="85" rx="6" fill="rgba(255,255,255,0.95)" stroke="white" stroke-width="2"/>
+                    <text x="355" y="168" font-size="12" font-weight="600" fill="#0f172a">1. Format Conversion</text>
+                    <text x="365" y="186" font-size="11" fill="#64748b">→ WebP for modern browsers</text>
+                    <text x="355" y="204" font-size="12" font-weight="600" fill="#0f172a">2. Compression</text>
+                    <text x="365" y="222" font-size="11" fill="#64748b">→ Lossy optimization preserving quality</text>
+                </g>
+
+                <path d="M 270 170 L 330 170" stroke="#10b981" stroke-width="4" fill="none" marker-end="url(#opt-arrow)"/>
+
+                <!-- Optimized Assets -->
+                <g class="node">
+                    <rect x="650" y="80" width="220" height="180" rx="12" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                    <text x="760" y="115" font-size="18" font-weight="700" fill="#10b981" text-anchor="middle">Optimized Assets</text>
+                    <rect x="670" y="135" width="180" height="110" rx="6" fill="white" stroke="#10b981" stroke-width="2"/>
+                    <text x="760" y="165" font-size="32" font-weight="700" fill="#10b981" text-anchor="middle">196 KB</text>
+                    <text x="680" y="195" font-size="12" fill="#0f172a">• WebP primary</text>
+                    <text x="680" y="215" font-size="12" fill="#0f172a">• JPEG/PNG fallback</text>
+                    <text x="680" y="235" font-size="12" fill="#0f172a">• Lazy loading</text>
+                </g>
+
+                <path d="M 590 170 L 650 170" stroke="#10b981" stroke-width="4" fill="none" marker-end="url(#opt-arrow)"/>
+
+                <!-- Deployment -->
+                <g class="node">
+                    <rect x="930" y="100" width="200" height="140" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                    <text x="1030" y="130" font-size="16" font-weight="700" fill="#2563eb" text-anchor="middle">Deployment</text>
+                    <rect x="945" y="145" width="170" height="85" rx="6" fill="white" stroke="#2563eb" stroke-width="2"/>
+                    <text x="1030" y="170" font-size="13" font-weight="600" fill="#2563eb" text-anchor="middle">CDN Ready</text>
+                    <text x="955" y="192" font-size="11" fill="#0f172a">• Edge caching</text>
+                    <text x="955" y="209" font-size="11" fill="#0f172a">• Global distribution</text>
+                    <text x="955" y="226" font-size="11" fill="#0f172a">• Fast delivery</text>
+                </g>
+
+                <path d="M 870 170 L 930 170" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#opt-arrow)"/>
+
+                <!-- Reduction Visualization -->
+                <g>
+                    <rect x="50" y="310" width="820" height="150" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+                    <text x="460" y="345" font-size="20" font-weight="700" fill="#2563eb" text-anchor="middle">Size Reduction: 96.3%</text>
+
+                    <!-- Before Bar -->
+                    <rect x="80" y="365" width="700" height="30" rx="4" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                    <text x="90" y="385" font-size="14" font-weight="600" fill="#ef4444">Original: 5.31 MB (100%)</text>
+
+                    <!-- After Bar -->
+                    <rect x="80" y="410" width="25.8" height="30" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                    <text x="115" y="430" font-size="14" font-weight="600" fill="#10b981">Optimized: 196 KB (3.7%)</text>
+
+                    <!-- Savings -->
+                    <rect x="790" y="365" width="70" height="75" rx="6" fill="#10b981" stroke="#0f172a" stroke-width="2"/>
+                    <text x="825" y="395" font-size="24" font-weight="700" fill="white" text-anchor="middle">-5.1</text>
+                    <text x="825" y="415" font-size="20" font-weight="700" fill="white" text-anchor="middle">MB</text>
+                    <text x="825" y="433" font-size="11" fill="white" text-anchor="middle">Saved</text>
+                </g>
+            </svg>
+
+            <div class="legend">
+                <div class="legend-title">Multi-Format Strategy</div>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #d1fae5; border-color: #10b981;"></div>
+                        <span>WebP - Modern browsers (smallest)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #dbeafe; border-color: #2563eb;"></div>
+                        <span>JPEG - Universal fallback</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #f3e8ff; border-color: #9333ea;"></div>
+                        <span>PNG - Legacy support</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">5</span>
+                Technology Stack
+            </h3>
+
+            <svg viewBox="0 0 1200 550" xmlns="http://www.w3.org/2000/svg">
+                <!-- Core Technologies -->
+                <g>
+                    <text x="600" y="40" font-size="20" font-weight="700" fill="#2563eb" text-anchor="middle">Core Technologies</text>
+                </g>
+
+                <g class="node">
+                    <rect x="100" y="80" width="250" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+                    <text x="225" y="115" font-size="18" font-weight="700" fill="#2563eb" text-anchor="middle">HTML5</text>
+                    <rect x="120" y="130" width="210" height="55" rx="6" fill="white" stroke="#2563eb" stroke-width="1"/>
+                    <text x="130" y="150" font-size="12" fill="#0f172a">• Semantic markup</text>
+                    <text x="130" y="168" font-size="12" fill="#0f172a">• Accessibility attributes</text>
+                    <text x="130" y="186" font-size="12" fill="#0f172a">• SEO optimized</text>
+                </g>
+
+                <g class="node">
+                    <rect x="400" y="80" width="250" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+                    <text x="525" y="115" font-size="18" font-weight="700" fill="#2563eb" text-anchor="middle">CSS3</text>
+                    <rect x="420" y="130" width="210" height="55" rx="6" fill="white" stroke="#2563eb" stroke-width="1"/>
+                    <text x="430" y="150" font-size="12" fill="#0f172a">• CSS Custom Properties</text>
+                    <text x="430" y="168" font-size="12" fill="#0f172a">• Flexbox + Grid Layout</text>
+                    <text x="430" y="186" font-size="12" fill="#0f172a">• Responsive Design</text>
+                </g>
+
+                <g class="node">
+                    <rect x="700" y="80" width="250" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+                    <text x="825" y="115" font-size="18" font-weight="700" fill="#2563eb" text-anchor="middle">JavaScript ES6+</text>
+                    <rect x="720" y="130" width="210" height="55" rx="6" fill="white" stroke="#2563eb" stroke-width="1"/>
+                    <text x="730" y="150" font-size="12" fill="#0f172a">• Modern syntax</text>
+                    <text x="730" y="168" font-size="12" fill="#0f172a">• Event handling</text>
+                    <text x="730" y="186" font-size="12" fill="#0f172a">• DOM manipulation</text>
+                </g>
+
+                <!-- External Services -->
+                <g>
+                    <text x="600" y="260" font-size="20" font-weight="700" fill="#10b981" text-anchor="middle">External Services</text>
+                </g>
+
+                <g class="node">
+                    <rect x="200" y="290" width="300" height="100" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                    <text x="350" y="325" font-size="18" font-weight="700" fill="#10b981" text-anchor="middle">Google Fonts</text>
+                    <rect x="220" y="340" width="260" height="40" rx="6" fill="white" stroke="#10b981" stroke-width="1"/>
+                    <text x="230" y="360" font-size="12" fill="#0f172a">• Inter font family (400, 500, 600, 700)</text>
+                    <text x="230" y="376" font-size="12" fill="#0f172a">• Preconnect optimization</text>
+                </g>
+
+                <g class="node">
+                    <rect x="550" y="290" width="300" height="100" rx="10" fill="#fef3c7" stroke="#d4af37" stroke-width="3"/>
+                    <text x="700" y="325" font-size="18" font-weight="700" fill="#d4af37" text-anchor="middle">Deployment Options</text>
+                    <rect x="570" y="340" width="260" height="40" rx="6" fill="white" stroke="#d4af37" stroke-width="1"/>
+                    <text x="580" y="360" font-size="12" fill="#0f172a">• Netlify, Vercel, GitHub Pages</text>
+                    <text x="580" y="376" font-size="12" fill="#0f172a">• Any static file hosting</text>
+                </g>
+
+                <!-- Development Tools -->
+                <g>
+                    <text x="600" y="450" font-size="20" font-weight="700" fill="#9333ea" text-anchor="middle">Development & Design</text>
+                </g>
+
+                <g class="node">
+                    <rect x="150" y="480" width="200" height="60" rx="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                    <text x="250" y="515" font-size="15" font-weight="600" fill="#9333ea" text-anchor="middle">No Build Process</text>
+                </g>
+
+                <g class="node">
+                    <rect x="400" y="480" width="200" height="60" rx="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                    <text x="500" y="515" font-size="15" font-weight="600" fill="#9333ea" text-anchor="middle">Git Version Control</text>
+                </g>
+
+                <g class="node">
+                    <rect x="650" y="480" width="200" height="60" rx="8" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+                    <text x="750" y="515" font-size="15" font-weight="600" fill="#9333ea" text-anchor="middle">Brand Assets (Figma)</text>
+                </g>
+            </svg>
+        </section>
+
+        <!-- Architectural Evolution Timeline -->
+        <section class="diagram-section">
+            <h3>
+                <span class="section-icon">6</span>
+                Architectural Evolution Timeline
+            </h3>
+
+            <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Timeline -->
+                <line x1="100" y1="200" x2="1100" y2="200" stroke="#2563eb" stroke-width="4"/>
+
+                <!-- Phase 1: Next.js -->
+                <g class="node">
+                    <circle cx="200" cy="200" r="15" fill="#64748b" stroke="#0f172a" stroke-width="3"/>
+                    <rect x="100" y="60" width="200" height="110" rx="10" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+                    <text x="200" y="90" font-size="16" font-weight="700" fill="#64748b" text-anchor="middle">Phase 1: Next.js</text>
+                    <text x="110" y="115" font-size="12" fill="#0f172a">• Initial architecture</text>
+                    <text x="110" y="135" font-size="12" fill="#0f172a">• Framework overhead</text>
+                    <text x="110" y="155" font-size="12" fill="#0f172a">• Status: Archived</text>
+                </g>
+                <line x1="200" y1="185" x2="200" y2="170" stroke="#64748b" stroke-width="2"/>
+
+                <!-- Phase 2: Static HTML (Current) -->
+                <g class="node">
+                    <circle cx="600" cy="200" r="20" fill="#10b981" stroke="#0f172a" stroke-width="3"/>
+                    <rect x="475" y="240" width="250" height="130" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+                    <text x="600" y="270" font-size="18" font-weight="700" fill="#10b981" text-anchor="middle">Phase 2: Static HTML</text>
+                    <text x="600" y="290" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle">(Current - Production)</text>
+                    <text x="485" y="315" font-size="12" fill="#0f172a">• Vanilla HTML/CSS/JS</text>
+                    <text x="485" y="335" font-size="12" fill="#0f172a">• Zero dependencies</text>
+                    <text x="485" y="355" font-size="12" fill="#0f172a">• Optimized assets (96.3%)</text>
+                </g>
+                <line x1="600" y1="220" x2="600" y2="240" stroke="#10b981" stroke-width="3"/>
+
+                <!-- Phase 3: Future SSG -->
+                <g class="node">
+                    <circle cx="1000" cy="200" r="15" fill="#2563eb" stroke="#0f172a" stroke-width="3" stroke-dasharray="4,2"/>
+                    <rect x="900" y="60" width="200" height="110" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="6,3"/>
+                    <text x="1000" y="90" font-size="16" font-weight="700" fill="#2563eb" text-anchor="middle">Phase 3: Future SSG</text>
+                    <text x="910" y="115" font-size="12" fill="#0f172a">• 11ty / Astro / Hugo</text>
+                    <text x="910" y="135" font-size="12" fill="#0f172a">• Component reuse</text>
+                    <text x="910" y="155" font-size="12" fill="#0f172a">• Status: Planned</text>
+                </g>
+                <line x1="1000" y1="185" x2="1000" y2="170" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,2"/>
+
+                <!-- Arrows between phases -->
+                <path d="M 300 200 L 580 200" stroke="#2563eb" stroke-width="3" fill="none" marker-end="url(#opt-arrow)"/>
+                <path d="M 620 200 L 980 200" stroke="#2563eb" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+
+                <!-- Timeline Labels -->
+                <text x="200" y="30" font-size="13" fill="#64748b" text-anchor="middle">2024 Q3</text>
+                <text x="600" y="405" font-size="13" fill="#10b981" text-anchor="middle" font-weight="600">2024 Q4 - Present</text>
+                <text x="1000" y="30" font-size="13" fill="#2563eb" text-anchor="middle">Future</text>
+            </svg>
+
+            <div class="legend">
+                <div class="legend-title">Evolution Strategy</div>
+                <p style="font-size: 0.875rem; color: var(--text-light); margin-top: 0.5rem;">
+                    The architecture evolved from a Next.js framework to pure static HTML for simplicity and performance.
+                    A future migration to a static site generator (SSG) is planned when component reuse and content management become priorities,
+                    while maintaining the core benefits of static deployment.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Add interactive tooltips and hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const nodes = document.querySelectorAll('.node');
+
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+
+                node.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Print functionality
+            const printBtn = document.createElement('button');
+            printBtn.textContent = 'Print Diagram';
+            printBtn.style.cssText = `
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                padding: 1rem 2rem;
+                background: linear-gradient(135deg, #2563eb, #1a5490);
+                color: white;
+                border: none;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            `;
+
+            printBtn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.15)';
+            });
+
+            printBtn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+
+            document.body.appendChild(printBtn);
+        });
+    </script>
+</body>
+</html>

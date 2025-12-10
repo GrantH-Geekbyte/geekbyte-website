@@ -1,0 +1,31 @@
+<svg width="220" height="50" viewBox="0 0 220 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="techGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c5a05e"/>
+      <stop offset="100%" stop-color="#a8893d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Tech icon element - abstract circuit/byte symbol -->
+  <g transform="translate(0, 8)">
+    <!-- Hexagon frame representing "byte" -->
+    <polygon points="17,2 30,10 30,24 17,32 4,24 4,10" fill="none" stroke="url(#techGradient)" stroke-width="2"/>
+    <!-- Inner connection nodes -->
+    <circle cx="17" cy="17" r="4" fill="url(#techGradient)"/>
+    <!-- Circuit lines extending outward -->
+    <line x1="30" y1="17" x2="38" y2="17" stroke="url(#accentGradient)" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="38" cy="17" r="2" fill="#c5a05e"/>
+  </g>
+
+  <!-- GEEKBYTE text -->
+  <text x="48" y="33" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.02em">
+    <tspan fill="#0a1628">GEEK</tspan><tspan fill="url(#techGradient)">BYTE</tspan>
+  </text>
+
+  <!-- Subtle underline accent -->
+  <line x1="48" y1="40" x2="130" y2="40" stroke="url(#accentGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+</svg>
