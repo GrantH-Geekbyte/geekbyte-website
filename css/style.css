@@ -767,13 +767,13 @@ header {
 
 .spotlight-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
 .spotlight-card {
     background: white;
-    padding: 3.5rem;
+    padding: 2rem;
     border-radius: 1.5rem;
     border: 1px solid var(--border-color);
     transition: var(--transition-slow);
@@ -821,11 +821,11 @@ header {
 
 .spotlight-icon {
     color: var(--primary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     display: inline-block;
-    padding: 1.25rem;
+    padding: 1rem;
     background: linear-gradient(135deg, rgba(30, 64, 175, 0.08) 0%, rgba(21, 82, 204, 0.08) 100%);
-    border-radius: 1.25rem;
+    border-radius: 1rem;
     box-shadow: var(--shadow-sm);
     transition: var(--transition-smooth);
 }
@@ -837,30 +837,31 @@ header {
 
 .spotlight-card h3 {
     color: var(--text-color);
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
 }
 
 .spotlight-tagline {
     color: var(--text-light);
-    font-size: 1.125rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
     font-style: italic;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .spotlight-benefits {
     list-style: none;
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .spotlight-benefits li {
-    padding: 0.75rem 0;
-    padding-left: 2rem;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
     position: relative;
     color: var(--text-secondary);
-    line-height: 1.7;
+    font-size: 0.9375rem;
+    line-height: 1.5;
 }
 
 .spotlight-benefits li::before {
