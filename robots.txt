@@ -1,0 +1,13 @@
+# Robots.txt for Geekbyte LLC
+# https://geekbyte.biz
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://geekbyte.biz/sitemap.xml
+
+# Disallow development/preview files
+Disallow: /logo-preview.html
+Disallow: /.claude/
+Disallow: /brand/

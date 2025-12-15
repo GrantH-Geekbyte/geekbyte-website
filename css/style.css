@@ -7,6 +7,27 @@
     box-sizing: border-box;
 }
 
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--executive-blue, #1e40af);
+    color: white;
+    padding: 8px 16px;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--gold-executive, #c5a05e);
+    outline-offset: 2px;
+}
+
 :root {
     /* Premium PE Color Palette - Upgraded */
     --deep-navy: #0a1628;
@@ -346,6 +367,11 @@ header {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    /* Reset button styles for accessibility */
+    background: none;
+    border: none;
+    padding: 8px;
+    margin: -8px;
 }
 
 .hamburger span {

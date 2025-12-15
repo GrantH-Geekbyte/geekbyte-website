@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
+            const isExpanded = hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            // Update aria-expanded for accessibility
+            hamburger.setAttribute('aria-expanded', isExpanded);
         });
 
         // Close mobile menu when clicking on a nav link
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
         });
 
@@ -27,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -41,61 +45,32 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                message: document.getElementById('message').value
-            };
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
 
-            // Basic validation
-            if (!formData.name || !formData.email || !formData.message) {
-                showMessage('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formData.email)) {
-                showMessage('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Simulate form submission (replace with actual backend call)
-            submitForm(formData);
-        });
-    }
-
-    function submitForm(data) {
-        // Display loading state
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-
-        // Simulate API call with timeout
-        // In production, replace this with actual fetch/axios call to your backend
-        setTimeout(() => {
-            // Success simulation
-            showMessage('Thank you for your message! We will get back to you soon.', 'success');
-            contactForm.reset();
-            submitBtn.textContent = originalBtnText;
-            submitBtn.disabled = false;
-
-            // For actual implementation, use:
-            /*
-            fetch('/api/contact', {
+            // Submit to Formspree
+            fetch(contactForm.action, {
                 method: 'POST',
+                body: new FormData(contactForm),
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+                    'Accept': 'application/json'
+                }
             })
-            .then(response => response.json())
-            .then(result => {
-                showMessage('Thank you for your message! We will get back to you soon.', 'success');
-                contactForm.reset();
+            .then(response => {
+                if (response.ok) {
+                    showMessage('Thank you for your message! We will get back to you soon.', 'success');
+                    contactForm.reset();
+                } else {
+                    response.json().then(data => {
+                        if (data.errors) {
+                            showMessage(data.errors.map(err => err.message).join(', '), 'error');
+                        } else {
+                            showMessage('There was an error sending your message. Please try again.', 'error');
+                        }
+                    });
+                }
             })
             .catch(error => {
                 showMessage('There was an error sending your message. Please try again.', 'error');
@@ -104,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
             });
-            */
-        }, 1500);
+        });
     }
 
     function showMessage(message, type) {
