@@ -437,6 +437,42 @@ header {
     padding-top: 1rem;
 }
 
+/* Stacked hero layout - headline on top, diagram below */
+.hero-container.hero-stacked {
+    grid-template-columns: 1fr;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+
+.hero-stacked .hero-content {
+    max-width: 100%;
+}
+
+.hero-stacked .hero-content h1,
+.hero-stacked .hero-content .hero-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-stacked .hero-content .hero-cta {
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.hero-stacked .hero-graphic {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    order: 1 !important;
+}
+
+.hero-stacked .value-cycle-graphic {
+    max-width: 320px;
+}
+
 .hero-content {
     max-width: 600px;
 }
@@ -457,6 +493,21 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Wrapper for graphic + badges side by side */
+.hero-graphic-with-badges {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.hero-graphic-with-badges .trust-badges {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 0;
 }
 
 .value-cycle-graphic {
@@ -531,22 +582,23 @@ header {
 }
 
 .trust-badges .badge {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(197, 160, 94, 0.15);
     backdrop-filter: blur(12px);
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: var(--letter-spacing-wide);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(197, 160, 94, 0.4);
+    color: var(--gold-executive);
     transition: var(--transition-smooth);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .trust-badges .badge:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(197, 160, 94, 0.25);
     transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(197, 160, 94, 0.6);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
@@ -2350,7 +2402,7 @@ footer p {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 3rem;
+        gap: 1.5rem;
     }
 
     .hero-content {
@@ -2369,8 +2421,28 @@ footer p {
         justify-content: center;
     }
 
+    /* Graphic + badges side by side on tablet */
+    .hero-graphic-with-badges {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        align-items: center;
+        order: 1;
+    }
+
+    .hero-graphic-with-badges .hero-graphic {
+        order: 0;
+    }
+
+    .hero-graphic-with-badges .trust-badges {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 0;
+    }
+
     .hero-graphic {
-        order: -1;
+        order: 1;
     }
 
     .value-cycle-graphic,
@@ -2587,6 +2659,16 @@ footer p {
 
     .btn {
         padding: 0.875rem 1.75rem;
+    }
+
+    /* Stack graphic and badges vertically on small mobile */
+    .hero-graphic-with-badges {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .hero-graphic-with-badges .trust-badges {
+        align-items: center;
     }
 }
 

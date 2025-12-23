@@ -14,9 +14,9 @@
   </defs>
 
   <!-- Center circle -->
-  <circle cx="200" cy="200" r="50" fill="none" stroke="#1e40af" stroke-width="2"/>
-  <text x="200" y="195" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">VALUE</text>
-  <text x="200" y="215" text-anchor="middle" fill="#1e40af" font-family="Inter, sans-serif" font-size="14" font-weight="700">CREATION</text>
+  <circle cx="200" cy="200" r="50" fill="#1e40af"/>
+  <text x="200" y="195" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">VALUE</text>
+  <text x="200" y="215" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">CREATION</text>
 
   <!-- Outer ring segments -->
   <circle cx="200" cy="200" r="130" fill="none" stroke="#1e40af" stroke-width="1" opacity="0.2"/>
