@@ -1,0 +1,82 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#c5a05e"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Accent line at top -->
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accentGradient)"/>
+
+  <!-- Left side: Logo and branding -->
+  <g transform="translate(80, 80)">
+    <!-- Geekbyte wordmark -->
+    <text x="0" y="50" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700">
+      <tspan fill="#ffffff">GEEK</tspan><tspan fill="#c5a05e">BYTE</tspan>
+    </text>
+  </g>
+
+  <!-- Main headline -->
+  <text x="80" y="220" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700" fill="#ffffff">
+    PE Portfolio Technology
+  </text>
+  <text x="80" y="290" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700" fill="#ffffff">
+    Leadership
+  </text>
+
+  <!-- Subheadline -->
+  <text x="80" y="370" font-family="Inter, Arial, sans-serif" font-size="28" fill="#94a3b8">
+    Fractional CTO | Board Advisory | Growth Advisory
+  </text>
+
+  <!-- Trust badges -->
+  <g transform="translate(80, 430)">
+    <rect x="0" y="0" width="240" height="45" rx="22" fill="rgba(197, 160, 94, 0.15)" stroke="#c5a05e" stroke-width="1"/>
+    <text x="120" y="29" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#c5a05e">Multiple PE Exits</text>
+
+    <rect x="260" y="0" width="240" height="45" rx="22" fill="rgba(197, 160, 94, 0.15)" stroke="#c5a05e" stroke-width="1"/>
+    <text x="380" y="29" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#c5a05e">27+ M&amp;A Integrations</text>
+
+    <rect x="520" y="0" width="240" height="45" rx="22" fill="rgba(197, 160, 94, 0.15)" stroke="#c5a05e" stroke-width="1"/>
+    <text x="640" y="29" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="600" fill="#c5a05e">15 Cloud Migrations</text>
+  </g>
+
+  <!-- Right side: Value cycle graphic (simplified) -->
+  <g transform="translate(900, 315)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="140" fill="none" stroke="#1e40af" stroke-width="2" opacity="0.3"/>
+
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="55" fill="#1e40af"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">VALUE</text>
+    <text x="0" y="12" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">CREATION</text>
+
+    <!-- Quadrant circles -->
+    <circle cx="85" cy="-85" r="30" fill="none" stroke="#1e40af" stroke-width="2"/>
+    <text x="85" y="-90" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">DUE</text>
+    <text x="85" y="-78" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">DILIGENCE</text>
+
+    <circle cx="95" cy="75" r="30" fill="none" stroke="#1e40af" stroke-width="2"/>
+    <text x="95" y="70" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">TECH</text>
+    <text x="95" y="82" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">STRATEGY</text>
+
+    <circle cx="-75" cy="95" r="30" fill="none" stroke="#1e40af" stroke-width="2"/>
+    <text x="-75" y="90" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">VALUE</text>
+    <text x="-75" y="102" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">EXECUTION</text>
+
+    <circle cx="-95" cy="-65" r="30" fill="none" stroke="#c5a05e" stroke-width="2"/>
+    <text x="-95" y="-70" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">EXIT</text>
+    <text x="-95" y="-58" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="10" font-weight="600">READY</text>
+  </g>
+
+  <!-- Website URL -->
+  <text x="80" y="570" font-family="Inter, Arial, sans-serif" font-size="22" fill="#64748b">geekbyte.biz</text>
+</svg>
