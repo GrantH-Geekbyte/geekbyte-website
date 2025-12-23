@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export OG Image to PNG</title>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            padding: 20px;
+            background: #1e293b;
+            color: white;
+        }
+        .instructions {
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        .preview {
+            border: 2px solid #c5a05e;
+            margin: 20px auto;
+            display: block;
+        }
+        button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #1e3a8a;
+        }
+        #canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h1>OG Image Export Tool</h1>
+        <p>This page helps you export the Open Graph image as a PNG file for social sharing.</p>
+        <p><strong>Instructions:</strong></p>
+        <ol>
+            <li>Click "Download PNG" to save the image</li>
+            <li>Upload the og-image.png to your images folder</li>
+            <li>The meta tags already reference images/og-image.png</li>
+        </ol>
+    </div>
+
+    <img src="images/og-image.svg" class="preview" id="svgImage" width="1200" height="630">
+    <canvas id="canvas" width="1200" height="630"></canvas>
+
+    <div style="text-align: center;">
+        <button onclick="downloadPNG()">Download PNG</button>
+    </div>
+
+    <script>
+        function downloadPNG() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = document.getElementById('svgImage');
+
+            // Draw SVG to canvas
+            ctx.drawImage(img, 0, 0, 1200, 630);
+
+            // Convert to PNG and download
+            const link = document.createElement('a');
+            link.download = 'og-image.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

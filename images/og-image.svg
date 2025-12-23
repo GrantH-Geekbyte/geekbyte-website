@@ -50,9 +50,9 @@
   </g>
 
   <!-- Right side: Value cycle graphic (simplified) -->
-  <g transform="translate(900, 315)">
+  <g transform="translate(980, 280)">
     <!-- Outer ring -->
-    <circle cx="0" cy="0" r="140" fill="none" stroke="#1e40af" stroke-width="2" opacity="0.3"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#1e40af" stroke-width="2" opacity="0.3"/>
 
     <!-- Center circle -->
     <circle cx="0" cy="0" r="55" fill="#1e40af"/>
