@@ -673,6 +673,24 @@ header {
     color: var(--deep-navy);
     margin-bottom: 0.25rem;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bio-linkedin {
+    color: #0077b5;
+    transition: var(--transition);
+    display: inline-flex;
+}
+
+.bio-linkedin:hover {
+    color: #005582;
+    transform: scale(1.1);
+}
+
+.bio-linkedin svg {
+    display: block;
 }
 
 .bio-title {
@@ -2386,6 +2404,23 @@ footer::after {
     color: white;
 }
 
+.footer-social {
+    margin: 1.5rem 0;
+}
+
+.footer-social a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    color: white;
+}
+
+.footer-social svg {
+    display: block;
+}
+
 footer p {
     margin: 0;
     opacity: 0.6;
@@ -2670,6 +2705,112 @@ footer p {
     .hero-graphic-with-badges .trust-badges {
         align-items: center;
     }
+}
+
+/* ==========================================
+   Utility Classes
+   ========================================== */
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Spacing utilities */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Display utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+/* Flex utilities */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+
+/* Grid utilities */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Visibility utilities */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Card base class - can be extended */
+.card-base {
+    background-color: white;
+    border-radius: 1.25rem;
+    border: 1px solid var(--border-light);
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.card-base:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* Section padding standard */
+.section-padding {
+    padding: 3.5rem 0;
+}
+
+.section-padding-lg {
+    padding: 5rem 0;
 }
 
 /* ==========================================
