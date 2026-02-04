@@ -1,0 +1,26 @@
+{
+  "name": "geekbyte-website",
+  "version": "1.0.0",
+  "description": "GeekByte LLC corporate website - static marketing site",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:local": "playwright test --project=local",
+    "test:live": "playwright test --project=live",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "serve": "serve . -p 3000"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@axe-core/playwright": "^4.8.0",
+    "serve": "^14.2.0"
+  },
+  "keywords": [
+    "geekbyte",
+    "website",
+    "static"
+  ],
+  "author": "Grant Howe, GeekByte LLC",
+  "license": "UNLICENSED"
+}

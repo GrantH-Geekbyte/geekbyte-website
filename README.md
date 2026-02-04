@@ -1,171 +1,166 @@
-# GeekByte Website
+# GeekByte Website — SDD Implementation
 
-A modern, responsive static website for GeekByte - your premier technology solutions partner.
+**Project:** GeekByte LLC Corporate Website → AI Agent Product Platform
+**Methodology:** Spec-Driven Development v3.0 (Solo Operator Model)
+**Owner:** Grant Howe, Managing Partner
+**Started:** February 2026
+**Phase:** Adoption (Day 0-90)
 
-## Project Overview
+## What This Is
 
-This is a professional static website built with HTML5, CSS3, and vanilla JavaScript. The site features a clean, modern design with full mobile responsiveness and follows web development best practices.
+This is the SDD pipeline infrastructure for the GeekByte website project.
+Every change to the site flows through this pipeline as a Feature Spec,
+reviewed at each gate, with documented human judgment at every approval point.
 
-## Features
+This is also a dogfooding exercise — using SDD on a real project to
+pressure-test the methodology before deploying it at scale.
 
-- **Responsive Design**: Fully responsive layout that works seamlessly across desktop, tablet, and mobile devices
-- **Modern UI/UX**: Clean, professional design with smooth transitions and animations
-- **Mobile Navigation**: Hamburger menu for mobile devices with smooth toggle animations
-- **Contact Form**: Functional contact form with client-side validation
-- **SEO Optimized**: Proper meta tags, semantic HTML, and structure for search engine optimization
-- **Accessibility**: Built with accessibility in mind using semantic HTML5 elements
-- **Cross-browser Compatible**: Works across all modern browsers
-
-## Project Structure
+## Directory Structure
 
 ```
-geekbyte.biz/
-├── index.html          # Main homepage
-├── about.html          # About page
-├── contact.html        # Contact page with form
-├── css/
-│   └── style.css       # Main stylesheet with responsive design
-├── js/
-│   └── main.js         # JavaScript for interactivity
-├── images/             # Directory for images and assets
-├── .claude/
-│   └── agents/         # Directory for Claude sub-agents
-└── README.md           # Project documentation
+.claude/agents/              # Agent configs (5 agents)
+  pm-spec.md                 #   Spec authoring
+  architect-review.md        #   Architecture validation
+  implementer-tester.md      #   Implementation + testing
+  deployment.md              #   Deployment preparation
+  learning-engine.md         #   Learning event analysis
+governance/                  # Process governance
+  solo-operator-model.md     #   How gates work for a one-person team
+  tier-selection-guidelines.md  # Complexity tier decision guide
+  escalation-protocols.md    #   How to handle disputes and emergencies
+  pipeline-monitoring.md     #   Alert thresholds and review cadence
+patterns/                    # Pattern library (grows from real work)
+  spec/                      #   Spec patterns
+  architecture/              #   Architecture patterns
+  qa/                        #   QA patterns
+  deployment/                #   Deployment patterns
+specs/                       # Feature Specs
+  SPEC-001-fix-about-page.md #   First spec: fix About page 404
+checklists/                  # Gate checklists (generated per spec)
+learning/
+  events/                    # Gate rejection/modification events
+  escapes/                   # Production escape tracking
+metrics/
+  velocity-baseline.md       # Velocity tracking
+CLAUDE.md                    # Project context for agents
 ```
 
-## Pages
+## How to Use
 
-### Home (index.html)
-- Hero section with call-to-action
-- Services overview with feature cards
-- Clean navigation header
-- Professional footer
+### Creating a new spec
+1. Describe the change you want
+2. Use the pm-spec agent to produce a structured Feature Spec
+3. Review the spec — does it capture your real intent?
+4. Approve with documented reasoning → moves to Architecture Review
 
-### About (about.html)
-- Company information
-- Mission statement
-- Core values
-- Why choose us section
+### Running through the pipeline
+1. **Spec Gate:** Review and approve the Feature Spec
+2. **Arch Gate:** Agent validates architecture, you review concerns
+3. **QA Gate:** Agent implements and tests, you verify adequacy
+4. **Deploy Gate:** Confirm deployment readiness, authorize release
 
-### Contact (contact.html)
-- Contact form with validation
-- Business contact information
-- Business hours
-- Form submission handling
+### Logging learning events
+When a gate rejects or modifies a spec, create a file in learning/events/:
+```
+LE-YYYY-MM-DD-NNN.md
+```
+When a defect reaches production, create a file in learning/escapes/:
+```
+ESC-INC-NNN.md
+```
 
-## Technologies Used
+## First Spec
 
-- **HTML5**: Semantic markup and modern HTML features
-- **CSS3**: Custom properties (CSS variables), Flexbox, Grid, animations
-- **JavaScript (ES6+)**: Modern vanilla JavaScript for interactivity
-- **No frameworks**: Pure HTML/CSS/JS for maximum performance and minimal dependencies
+SPEC-001 fixes the About page 404. It's Standard tier — enough process
+to exercise the pipeline without overwhelming a first run. Start here.
 
-## CSS Features
+## Key Files to Read First
 
-- CSS custom properties for theming
-- Mobile-first responsive design
-- Flexbox and Grid layouts
-- Smooth transitions and hover effects
-- Box shadow and modern styling
-- Breakpoints for responsive design (768px, 480px)
+1. `governance/solo-operator-model.md` — How gates work when you're solo
+2. `CLAUDE.md` — Project context (fill in the TBD items)
+3. `governance/tier-selection-guidelines.md` — How to classify changes
+4. `specs/SPEC-001-fix-about-page.md` — Your first spec to run through
 
-## JavaScript Features
+## Running Tests
 
-- Mobile navigation toggle
-- Contact form validation
-- Smooth scrolling
-- Active page highlighting
-- Form submission handling (ready for backend integration)
-- Utility functions (debounce, viewport detection)
-
-## Getting Started
+This project uses Playwright for automated end-to-end testing.
 
 ### Prerequisites
+- Node.js v24+ installed (check with `node --version`)
+- Dependencies installed (run `npm install` if needed)
 
-No build process or dependencies required! This is a static website that runs directly in any modern web browser.
+### Test Commands
 
-### Installation
+```bash
+# Run all tests against localhost (requires local server running)
+npm test
 
-1. Clone or download this repository
-2. Open `index.html` in your web browser
+# Start local server in separate terminal
+npm run serve
 
-### Deployment
+# Run tests against localhost explicitly
+npm run test:local
 
-This static website can be deployed to any web hosting service:
+# Run smoke tests against live site (geekbyte.biz)
+npm run test:live
 
-- **GitHub Pages**: Push to GitHub and enable Pages
-- **Netlify**: Drag and drop the folder or connect to Git
-- **Vercel**: Deploy with zero configuration
-- **Traditional hosting**: Upload files via FTP to your web server
+# Run tests in debug mode
+npm run test:debug
 
-## Customization
-
-### Colors
-
-Edit CSS custom properties in `css/style.css`:
-
-```css
-:root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --accent-color: #3b82f6;
-    /* ... more variables */
-}
+# Run tests in UI mode (interactive)
+npm run test:ui
 ```
 
-### Content
+### Test Structure
 
-- Edit HTML files directly to change text content
-- Update meta tags in each HTML file for SEO
-- Replace placeholder contact information
+Tests are organized in `tests/e2e/`:
+- `navigation.spec.js` — Navigation links resolve from all pages (no 404s)
+- `pages.spec.js` — All pages load successfully with correct structure
+- `responsive.spec.js` — Pages render correctly at desktop, tablet, mobile viewports
+- `contact-form.spec.js` — Contact form validation and submission
+- `campaign-form.spec.js` — Campaign landing page form (Formspree integration)
+- `accessibility.spec.js` — Accessibility checks using @axe-core/playwright
+- `seo.spec.js` — SEO meta tags, OG tags, and titles
+- `mobile-nav.spec.js` — Mobile hamburger menu functionality
 
-### Images
+### Running Tests Locally
 
-- Add images to the `images/` directory
-- Update image references in HTML files
-- Use appropriate alt text for accessibility
+1. Start the local server:
+   ```bash
+   npm run serve
+   ```
+   This starts a server at http://localhost:3000
 
-## Browser Support
+2. In a separate terminal, run tests:
+   ```bash
+   npm test
+   ```
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
+### Test Configuration
 
-## Contact Form Integration
+- **Local testing:** Full test suite runs against http://localhost:3000
+- **Live testing:** Read-only smoke tests run against https://geekbyte.biz
+- **Form mocking:** Form submissions to Formspree are mocked to prevent spam
+- **Browsers:** Tests run on Chromium (Chrome for Testing)
 
-The contact form currently uses client-side validation and a simulated submission. To integrate with a backend:
+### Test Reports
 
-1. Uncomment the fetch code in `js/main.js` (line 75-92)
-2. Update the API endpoint URL
-3. Set up backend service (e.g., Node.js, PHP, or serverless function)
-4. Configure email service or database storage
+After running tests, view the HTML report:
+```bash
+npx playwright show-report
+```
 
-## Performance
+Reports are saved in `playwright-report/` (git-ignored).
 
-- No external dependencies or frameworks
-- Minimal CSS and JavaScript
-- Optimized for fast loading
-- Mobile-first approach
+### Troubleshooting
 
-## Future Enhancements
+**Tests fail with connection refused:**
+- Make sure local server is running (`npm run serve`)
+- Verify it's accessible at http://localhost:3000
 
-- Add blog section
-- Implement portfolio/projects page
-- Add testimonials section
-- Integrate analytics
-- Add more interactive elements
-- Implement dark mode toggle
+**Browser not found:**
+- Run `npx playwright install` to download browsers
 
-## License
-
-Copyright © 2025 GeekByte. All rights reserved.
-
-## Support
-
-For questions or support, please contact: info@geekbyte.biz
-
----
-
-Built with modern web technologies and best practices.
+**Tests time out:**
+- Check that pages load quickly (< 30 seconds)
+- Verify no broken external resources (fonts, images)
