@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download our executive brief: AI Strategy for PE Portfolio Companies. Practical guidance for CEOs and boards navigating AI transformation.">
+    <meta name="description" content="Portfolio companies are buying AI tools without the expertise to use them. Download our executive brief on why senior expertise determines AI winners and losers in your portfolio.">
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://geekbyte.biz/campaigns/ai-ceo-brief.html">
-    <meta property="og:title" content="AI Strategy Brief for PE Portfolio CEOs | Geekbyte">
-    <meta property="og:description" content="Executive brief: Navigating AI transformation in PE-backed companies. Get practical guidance from a CTO who's been through multiple PE exits.">
+    <meta property="og:title" content="Portfolio Companies Are Buying Fighter Jets. Most Don't Have Pilots. | Geekbyte">
+    <meta property="og:description" content="Why senior expertise—not AI tools—determines your portfolio's AI winners and losers. Free executive brief from a CTO with 4 PE exits.">
     <meta property="og:image" content="https://geekbyte.biz/images/geekbyte-og-image.png?v=3">
 
-    <title>AI Strategy Brief for PE Portfolio CEOs | Geekbyte</title>
+    <title>Portfolio Companies Are Buying Fighter Jets Without Pilots | Geekbyte</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +44,18 @@
             max-width: 800px;
         }
 
+        .campaign-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
         .campaign-hero h1 {
             color: white;
             font-size: 2.75rem;
@@ -64,14 +76,18 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.875rem;
         }
 
         .trust-indicators span {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .campaign-content {
@@ -92,12 +108,24 @@
             padding: 2.5rem;
             border-radius: 1rem;
             box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
         }
 
         .value-section h2 {
             color: var(--deep-navy);
             font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-color), #00d4aa);
+            margin-top: 0.75rem;
             margin-bottom: 1.5rem;
+            border-radius: 2px;
         }
 
         .value-list {
@@ -126,8 +154,26 @@
             background: white;
             padding: 2.5rem;
             border-radius: 1rem;
-            box-shadow: var(--shadow-md);
-            border: 2px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), #00d4aa, var(--primary-color));
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         .form-section h2 {
@@ -215,21 +261,26 @@
 </head>
 <body>
     <!-- Minimal header for campaigns -->
-    <header style="background: var(--deep-navy); padding: 1rem 0;">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="../index.html" class="logo-gator" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                <img src="../images/logos/brand/geekbyte-logo.png" alt="Geekbyte" style="height: 32px;">
-                <span class="wordmark" style="font-size: 1.25rem; font-weight: 700;"><span style="color: #00d4aa;">GEEK</span><span style="color: white;">BYTE</span></span>
-            </a>
-        </div>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="../index.html" class="logo-gator">
+                        <img src="../images/logos/brand/geekbyte-logo.png" alt="Geekbyte" class="gator-icon">
+                        <span class="wordmark"><span class="geek">GEEK</span><span class="byte">BYTE</span></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section class="campaign-hero">
             <div class="container">
-                <h1>AI Strategy for PE Portfolio Companies</h1>
-                <p class="subtitle">A CEO's Brief: Navigating AI Transformation Without Blowing Your Budget or Your Timeline</p>
+                <div class="campaign-badge">📄 Free Executive Brief</div>
+                <h1>Portfolio Companies Are Buying Fighter Jets. Most Don't Have Pilots.</h1>
+                <p class="subtitle">Why senior expertise—not AI tools—determines your portfolio's AI winners and losers</p>
                 <div class="trust-indicators">
                     <span>✓ 4 PE Exits</span>
                     <span>✓ 27+ M&A Integrations</span>
@@ -262,7 +313,7 @@
 
                         <form class="campaign-form" id="briefForm" action="https://formspree.io/f/mbdrppqp" method="POST">
                             <input type="hidden" name="_subject" value="AI CEO Brief Download Request">
-                            <input type="hidden" name="brief" value="AI Strategy for PE Portfolio Companies">
+                            <input type="hidden" name="brief" value="Portfolio Companies Are Buying Fighter Jets - AI Executive Brief">
 
                             <div class="form-group">
                                 <label for="name">Name *</label>
