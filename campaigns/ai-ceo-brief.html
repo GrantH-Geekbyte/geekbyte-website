@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download our executive brief: AI Strategy for PE Portfolio Companies. Practical guidance for CEOs and boards navigating AI transformation.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://geekbyte.biz/campaigns/ai-ceo-brief.html">
+    <meta property="og:title" content="AI Strategy Brief for PE Portfolio CEOs | Geekbyte">
+    <meta property="og:description" content="Executive brief: Navigating AI transformation in PE-backed companies. Get practical guidance from a CTO who's been through multiple PE exits.">
+    <meta property="og:image" content="https://geekbyte.biz/images/geekbyte-og-image.png?v=3">
+
+    <title>AI Strategy Brief for PE Portfolio CEOs | Geekbyte</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Campaign-specific styles */
+        .campaign-hero {
+            background: var(--gradient-dark);
+            padding: 4rem 0 3rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .campaign-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gradient-mesh);
+            pointer-events: none;
+        }
+
+        .campaign-hero .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .campaign-hero h1 {
+            color: white;
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .campaign-hero .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .trust-indicators {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .trust-indicators span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .campaign-content {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .campaign-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .value-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .value-section h2 {
+            color: var(--deep-navy);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .value-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .value-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--primary-color);
+        }
+
+        .form-section h2 {
+            color: var(--deep-navy);
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .campaign-form .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .campaign-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.9375rem;
+        }
+
+        .campaign-form input,
+        .campaign-form select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+        }
+
+        .campaign-form input:focus,
+        .campaign-form select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+
+        .privacy-note {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .campaign-hero h1 {
+                font-size: 2rem;
+            }
+
+            .campaign-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-indicators {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Minimal header for campaigns -->
+    <header style="background: var(--deep-navy); padding: 1rem 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="../index.html" class="logo-gator" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <img src="../images/logos/brand/geekbyte-logo.png" alt="Geekbyte" style="height: 32px;">
+                <span class="wordmark" style="font-size: 1.25rem; font-weight: 700;"><span style="color: #00d4aa;">GEEK</span><span style="color: white;">BYTE</span></span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="campaign-hero">
+            <div class="container">
+                <h1>AI Strategy for PE Portfolio Companies</h1>
+                <p class="subtitle">A CEO's Brief: Navigating AI Transformation Without Blowing Your Budget or Your Timeline</p>
+                <div class="trust-indicators">
+                    <span>✓ 4 PE Exits</span>
+                    <span>✓ 27+ M&A Integrations</span>
+                    <span>✓ CTO/SVP Experience</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content & Form Section -->
+        <section class="campaign-content">
+            <div class="container">
+                <div class="campaign-grid">
+                    <!-- Value Proposition -->
+                    <div class="value-section">
+                        <h2>What You'll Learn</h2>
+                        <ul class="value-list">
+                            <li><strong>Why Expertise Matters More Than Ever</strong> – AI is an accelerant, not a navigator. Without clear vision and judgment, you build disaster faster. The companies that win have pilots who know what "good" looks like.</li>
+                            <li><strong>The Surgical Team Model</strong> – Fred Brooks' 1975 concept is finally practical. Senior people directing specialist AI agents can match or exceed traditional teams of 10-20. Here's how it works.</li>
+                            <li><strong>The Four Essential Human Roles</strong> – Vision Setters, Bot Leaders, Milestone Approvers, and Constraint Definers. Junior execution roles are compressing—expertise becomes the only differentiator.</li>
+                            <li><strong>The Talent Crisis Nobody's Discussing</strong> – 27.5% decline in programmer employment. Junior roles compressing across all functions. How do we grow new experts when AI automates the apprenticeship ladder?</li>
+                            <li><strong>Impact on Valuations</strong> – AI-ready companies command premium multiples. Laggards face discounts. Technical debt arbitrage opportunities exist—but the window is closing.</li>
+                            <li><strong>Competitive Threats You're Not Tracking</strong> – One expert with AI tools can now build what required 10-20 people. Portfolio companies face new pressure from AI-enabled solopreneurs who can outship them.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="form-section">
+                        <h2>Download the Brief</h2>
+                        <p>Get instant access to this executive brief. No sales pitch—just practical guidance from a CTO who's been through multiple PE exits.</p>
+
+                        <form class="campaign-form" id="briefForm" action="https://formspree.io/f/mbdrppqp" method="POST">
+                            <input type="hidden" name="_subject" value="AI CEO Brief Download Request">
+                            <input type="hidden" name="brief" value="AI Strategy for PE Portfolio Companies">
+
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Company *</label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">Role *</label>
+                                <select id="role" name="role" required>
+                                    <option value="">Select your role...</option>
+                                    <option value="ceo">Portfolio Company CEO</option>
+                                    <option value="cto">Portfolio Company CTO/CIO</option>
+                                    <option value="pe-partner">PE Partner/Principal</option>
+                                    <option value="operating-partner">Operating Partner</option>
+                                    <option value="board-member">Board Member</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 1.5rem;">
+                                <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-weight: 400;">
+                                    <input type="checkbox" name="newsletter" value="yes" style="margin-top: 0.25rem; width: auto;">
+                                    <span>Send me occasional insights on PE portfolio technology (quarterly, no fluff)</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Download Brief</button>
+                        </form>
+
+                        <div id="formMessage" class="form-message"></div>
+
+                        <p class="privacy-note">Your information is never shared. We'll send you the brief and occasionally share insights on PE portfolio technology—you can unsubscribe anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--deep-navy); color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p style="margin: 0; opacity: 0.8; font-size: 0.875rem;">&copy; 2025 Geekbyte LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form handling
+        const form = document.getElementById('briefForm');
+        const formMessage = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = 'Thank you! Your download will begin automatically...';
+                    form.reset();
+
+                    // Trigger PDF download
+                    setTimeout(() => {
+                        const link = document.createElement('a');
+                        link.href = 'downloads/AI_Transformation_Executive_Brief_Geekbyte.pdf';
+                        link.download = 'AI_Transformation_Executive_Brief_Geekbyte.pdf';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }, 500);
+
+                    // Optional: Track conversion
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'conversion', {'send_to': 'AW-CONVERSION_ID/CONVERSION_LABEL'});
+                    }
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Oops! There was a problem submitting the form. Please try again or email info@geekbyte.biz directly.';
+            }
+        });
+    </script>
+</body>
+</html>
