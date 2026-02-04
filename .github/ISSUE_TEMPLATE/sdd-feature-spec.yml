@@ -1,0 +1,111 @@
+name: SDD Feature Spec
+description: Spec-Driven Development feature specification
+title: "[SPEC-XXX] "
+labels: ["tier:standard", "type:feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Spec Information
+        Create an issue to track a spec through the SDD pipeline.
+
+  - type: input
+    id: spec_file
+    attributes:
+      label: Spec File
+      description: Path to the spec file in the repository
+      placeholder: "specs/SPEC-XXX-short-description.md"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity_tier
+    attributes:
+      label: Complexity Tier
+      description: Select the appropriate complexity tier
+      options:
+        - Trivial (under 30 min, config-only, skip gates)
+        - Standard (30-120 min, well-understood patterns)
+        - Complex (2-8 hours, architectural decisions)
+        - Critical (multi-day, auth/payments/PII, external review)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: spec_type
+    attributes:
+      label: Spec Type
+      description: Type of change
+      options:
+        - Feature (new functionality)
+        - Bugfix (bug fix or correction)
+        - Refactor (code restructuring without behavior change)
+        - Infrastructure (tooling, testing, deployment)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Brief Description
+      description: One or two sentence description of what this spec delivers
+      placeholder: "This spec adds..."
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Pipeline Status
+        The issue will be moved through columns as the spec progresses through gates.
+
+  - type: checkboxes
+    id: pipeline_checklist
+    attributes:
+      label: Pipeline Progress
+      description: Track progress through the SDD pipeline
+      options:
+        - label: Spec written
+        - label: Spec Gate approved
+        - label: Architecture Gate (Standard+ tiers only)
+        - label: Implementation complete
+        - label: QA Gate (Standard+ tiers only)
+        - label: Deployment Gate (Standard+ tiers only)
+        - label: Deployed to production
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Effort Metrics
+        Fill these in after spec completion for ROI tracking.
+
+  - type: input
+    id: ai_time
+    attributes:
+      label: AI Time
+      description: Total AI pipeline time (e.g., "68 min")
+      placeholder: "Leave blank until completion"
+
+  - type: input
+    id: human_estimate
+    attributes:
+      label: Human Estimate
+      description: Estimated human effort (e.g., "12.5-16.5 hours")
+      placeholder: "Leave blank until completion"
+
+  - type: input
+    id: speedup_factor
+    attributes:
+      label: Speedup Factor
+      description: AI speedup vs human (e.g., "11-15x")
+      placeholder: "Leave blank until completion"
+
+  - type: dropdown
+    id: first_pass
+    attributes:
+      label: First Pass
+      description: Did the spec pass all gates on first attempt?
+      options:
+        - Yes
+        - No
+        - Not yet determined
