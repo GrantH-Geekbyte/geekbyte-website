@@ -1,0 +1,51 @@
+name: Post-Deploy Smoke Tests
+
+on:
+  deployment_status:
+
+jobs:
+  smoke-test:
+    name: Run Smoke Tests
+    # Only run on successful production deployments
+    if: github.event.deployment_status.state == 'success' && github.event.deployment_status.environment == 'production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run smoke tests against production
+        run: npm run test:live
+
+      - name: Upload test report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-report
+          path: playwright-report/
+          retention-days: 90
+
+      - name: Add workflow summary
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "## ✅ Production Smoke Tests Passed" >> $GITHUB_STEP_SUMMARY
+            echo "All smoke tests passed successfully against https://geekbyte.biz" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ Production Smoke Tests Failed" >> $GITHUB_STEP_SUMMARY
+            echo "Smoke tests failed against https://geekbyte.biz" >> $GITHUB_STEP_SUMMARY
+            echo "Check the test report artifact for details." >> $GITHUB_STEP_SUMMARY
+          fi

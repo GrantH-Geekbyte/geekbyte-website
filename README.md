@@ -164,3 +164,39 @@ Reports are saved in `playwright-report/` (git-ignored).
 **Tests time out:**
 - Check that pages load quickly (< 30 seconds)
 - Verify no broken external resources (fonts, images)
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions to mechanically enforce SDD pipeline gates.
+
+### Automated Workflows
+
+**PR Tests** (`.github/workflows/pr-tests.yml`)
+- Triggers automatically on every pull request to main
+- Runs full Playwright test suite against localhost
+- Must pass before PR can be merged (enforces QA Gate)
+- Execution time: ~3 minutes
+
+**Post-Deploy Smoke Tests** (`.github/workflows/post-deploy-smoke.yml`)
+- Triggers automatically after Vercel production deployments
+- Runs read-only smoke tests (pages + navigation) against https://geekbyte.biz
+- Verifies production deployment health
+- Execution time: ~30 seconds
+
+### Branch Protection
+
+The main branch is protected with the following rules:
+- Pull requests required (no direct commits)
+- 1 approval required before merge
+- PR Tests workflow must pass
+- Force pushes disabled
+- Branch deletions disabled
+
+### For More Information
+
+See `governance/cicd-integration.md` for complete documentation:
+- Workflow descriptions
+- Failure response procedures
+- Emergency bypass procedure
+- Troubleshooting guide
+- Vercel webhook configuration
