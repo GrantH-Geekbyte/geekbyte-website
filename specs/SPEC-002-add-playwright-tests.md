@@ -2,8 +2,8 @@
 
 spec_id: SPEC-002
 title: Add Playwright Test Framework
-version: 1.3
-status: qa-approved
+version: 1.4
+status: deployed
 complexity_tier: standard
 last_updated: 2026-02-04
 
@@ -163,7 +163,7 @@ escalation_triggers_checked:
 | Spec | Grant Howe (Claude) | 2026-02-04 | APPROVED | Requirements complete (12 FR, 5 NFR), AC testable (12), scope clear, tier appropriate, clarifications resolved: Node.js install if needed, support local+live execution, PDF download test added |
 | Architecture | Grant Howe (Claude - Plan) | 2026-02-04 | APPROVED | Standard tier validated, all 5 conditions acknowledged: (1) Node.js dev-only, (2) localhost full tests + live smoke tests, (3) test maintenance accepted, (4) form mocking, (5) baseline execution acknowledged. Checklist: ARCH-SPEC-002.md |
 | QA | Grant Howe | 2026-02-04 | APPROVED | Mobile nav link test fixed (regex updated to accept /about without .html). 149/175 tests pass (85.1%). Core framework working. 26 test calibration issues deferred to SPEC-004. Checklist: QA-SPEC-002.md |
-| Deploy | Pending | | | Ready for deployment |
+| Deploy | Grant Howe (Claude) | 2026-02-04 | APPROVED | Deployed to production via git push. Commit e0ec41b. Vercel auto-deployment successful. Site verified: Home (200), About (200), Contact (200). Zero production impact (dev dependencies only). Checklist: DEPLOY-SPEC-002.md |
 
 ## Effort Comparison
 
@@ -172,8 +172,8 @@ escalation_triggers_checked:
 | **Spec Writing** | 15 min | 2-3 hours | Requirements gathering (45m), research Playwright patterns (30m), write 12 FRs (45m), write 12 ACs in Given/When/Then (30m), scope & dependencies (20m), format (10m) |
 | **Architecture Review** | 20 min | 1.5-2 hours | Read spec (20m), evaluate technical approaches (30m), security implications (20m), validate tier (15m), document decisions (20m), create checklist (15m) |
 | **Implementation + Test** | 25 min | 8-10 hours | Setup & research (1h), configuration (45m), implement 175 tests across 8 spec files (5-6h), debugging & iteration (1-2h), documentation & QA (45m) |
-| **Deployment** | _Pending_ | 30-45 min | Review QA checklist (10m), create deployment plan (10m), execute deploy to Vercel (5m), verify (5m), update docs (5-10m) |
-| **Total** | ~60 min | 12-16 hours | **AI Speedup: 12-16x** |
+| **Deployment** | 8 min | 30-45 min | Create deployment checklist (3m), git commit with 17 files (2m), git push to GitHub (1m), Vercel auto-deployment + verification (2m) |
+| **Total** | 68 min | 12.5-16.5 hours | **AI Speedup: 11-15x** |
 
 ### Assumptions
 - **Spec Writing:** PM familiar with testing concepts, has access to existing Playwright documentation
