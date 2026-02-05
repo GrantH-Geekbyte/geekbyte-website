@@ -22,11 +22,14 @@ const pages = [
 ];
 
 // Expected navigation links present in the nav bar
+// Per SPEC-004: Navigation is now flat (no dropdown)
 const expectedNavLinks = [
-  { text: 'Home', href: '/' },
-  { text: 'About', href: '/about.html' },
-  { text: 'Services', href: '#' }, // Dropdown toggle
-  { text: 'Contact', href: '/contact.html' },
+  { text: 'Home', href: 'index.html' },
+  { text: 'Fractional CTO', href: 'services/fractional-cto.html' },
+  { text: 'Board Advisory', href: 'services/board-advisory.html' },
+  { text: 'Growth Advisory', href: 'services/growth-advisory.html' },
+  { text: 'About', href: 'about.html' },
+  { text: 'Contact', href: 'contact.html' },
 ];
 
 // Service pages in dropdown
@@ -71,19 +74,20 @@ test.describe('Navigation Links', () => {
     await page.goto('/');
 
     // Verify main nav links are present
+    // Per SPEC-004: Navigation is now flat, all links visible in nav bar
     for (const link of expectedNavLinks) {
       const locator = page.locator(`nav a:has-text("${link.text}")`);
-      await expect(locator).toBeVisible();
+      await expect(locator).toHaveCount(1);
     }
   });
 
-  test('service dropdown contains all service pages', async ({ page }) => {
+  test('navigation contains all service pages', async ({ page }) => {
     await page.goto('/');
 
-    // Check for service links (may be in dropdown)
+    // Per SPEC-004: Service links are now directly in nav (no dropdown)
+    // Use text matching since href matching is more fragile
     for (const link of serviceLinks) {
-      // Service links might be hidden in dropdown on desktop
-      const locator = page.locator(`a[href="${link.href}"]`);
+      const locator = page.locator(`nav a:has-text("${link.text}")`);
       await expect(locator).toHaveCount(1);
     }
   });
