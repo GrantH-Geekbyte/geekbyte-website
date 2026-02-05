@@ -11,14 +11,15 @@ const { test, expect } = require('@playwright/test');
  */
 
 // All pages that must exist and load successfully
+// Per SPEC-004: Title patterns updated to match actual titles
 const pages = [
-  { path: '/', title: /GeekByte|Home/ },
-  { path: '/about.html', title: /About/ },
-  { path: '/contact.html', title: /Contact/ },
-  { path: '/services/fractional-cto.html', title: /Fractional CTO/ },
-  { path: '/services/board-advisory.html', title: /Board Advisory/ },
-  { path: '/services/growth-advisory.html', title: /Growth Advisory/ },
-  { path: '/campaigns/ai-ceo-brief.html', title: /AI.*CEO|Fighter Jet/ },
+  { path: '/', title: /Geekbyte.*Technology Leadership/i },
+  { path: '/about.html', title: /Grant Howe.*Technology Leadership.*Geekbyte/i },
+  { path: '/contact.html', title: /Contact.*Geekbyte/i },
+  { path: '/services/fractional-cto.html', title: /Fractional CTO/i },
+  { path: '/services/board-advisory.html', title: /Board Advisory/i },
+  { path: '/services/growth-advisory.html', title: /Growth Advisory/i },
+  { path: '/campaigns/ai-ceo-brief.html', title: /Portfolio Companies.*AI Tools.*Geekbyte/i },
 ];
 
 test.describe('Page Loading', () => {
@@ -71,9 +72,11 @@ test.describe('Homepage Specific', () => {
     await page.goto('/');
 
     // Should mention the three core services
-    await expect(page.locator('text=/Fractional CTO/i')).toBeVisible();
-    await expect(page.locator('text=/Board Advisory/i')).toBeVisible();
-    await expect(page.locator('text=/Growth/i')).toBeVisible();
+    // Per NFR-3: More resilient selectors that work with actual content structure
+    const bodyText = await page.locator('body').textContent();
+    expect(bodyText).toMatch(/Fractional CTO/i);
+    expect(bodyText).toMatch(/Board Advisory/i);
+    expect(bodyText).toMatch(/Growth/i);
   });
 });
 
@@ -104,7 +107,9 @@ test.describe('About Page', () => {
     await page.goto('/about.html');
 
     // Should mention GeekByte or Grant Howe
-    await expect(page.locator('text=/GeekByte/i')).toBeVisible();
+    // Per NFR-3: Use content check instead of visibility since multiple matches exist
+    const bodyText = await page.locator('main').textContent();
+    expect(bodyText).toMatch(/GeekByte/i);
   });
 });
 

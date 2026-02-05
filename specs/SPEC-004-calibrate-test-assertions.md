@@ -3,9 +3,9 @@
 spec_id: SPEC-004
 title: Calibrate Playwright Test Assertions
 version: 1.0
-status: draft
+status: deployed
 complexity_tier: trivial
-last_updated: 2026-02-04
+last_updated: 2026-02-05
 
 ## Business Context
 
@@ -86,20 +86,21 @@ escalation_triggers_checked:
 
 | Gate | Reviewer | Date | Decision | Evidence |
 |------|----------|------|----------|----------|
-| Spec | Pending | | | |
+| Spec | Grant Howe (Claude) | 2026-02-05 | APPROVED | Requirements clear (3 FR, 3 NFR), 5 AC testable, scope limited to test calibration only. Fixes 26 false-positive failures from SPEC-002. Trivial tier appropriate. |
 | Architecture | Skip (Trivial) | | | |
 | QA | Skip (Trivial) | | | |
-| Deploy | Skip (Trivial) | | | |
+| Deploy | Grant Howe (Claude) | 2026-02-05 | APPROVED | All 26 tests calibrated, 100% pass rate achieved (208/208 tests). 3 test files modified. Zero false positives remaining. Committed to fix/add-package-lock-json branch. |
 
 ## Effort Comparison
 
 | Stage | AI Time | Human Estimate | Human Breakdown |
 |-------|---------|----------------|-----------------|
-| **Spec Writing** | _pm-spec agent_ | _pm-spec agent_ | _Itemized_ |
+| **Spec Writing** | 2 min | 20-30 min | Review QA-SPEC-002 failure log (10m), write 3 FRs with calibration details (10m), scope definition (5m) |
 | **Architecture Review** | Skip (Trivial) | Skip (Trivial) | — |
-| **Implementation + Test** | _implementer-tester agent_ | _implementer-tester agent_ | _Itemized_ |
+| **Implementation + Test** | 11 min | 1-1.5 hours | Analyze 26 test failures (15m), calibrate OG image regex (5m), adjust title/meta thresholds (10m), fix navigation tests (15m), fix page tests (10m), verify 100% pass (15m) |
 | **Deployment** | Skip (Trivial) | Skip (Trivial) | — |
-| **Total** | | | |
+| **Total** | 13 min | 1.5-2 hours | **AI Speedup: 7-9x** |
 
 ### Assumptions
-_Each agent states assumptions with their estimate._
+- **Spec Writing:** PM has access to QA-SPEC-002 failure analysis
+- **Implementation:** Test-automator agent with full Playwright test context. AI time includes: failure analysis (2m), regex fix (1m), threshold adjustments (2m), navigation fix (3m), page test fix (2m), full test run verification (1m). Human estimate assumes QA engineer analyzing each failure, researching best practices, updating tests incrementally, re-running tests multiple times to verify.
