@@ -126,6 +126,29 @@ jobs:
               console.log(`Created issue #${issue.data.number}`);
             }
 
+      - name: Notify Slack on failure
+        id: slack-notification
+        if: failure()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "Production Smoke Tests Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*🚨 Production Smoke Tests Failed*\n*Environment:* production\n*Commit:* `${{ github.sha }}`\n*Deployer:* ${{ github.actor }}\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Run>\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}#artifacts|View Test Artifacts>"
+                  }
+                }
+              ]
+            }
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
       - name: Add workflow summary
         if: always()
         run: |
