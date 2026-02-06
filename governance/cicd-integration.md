@@ -121,39 +121,55 @@ This document describes the CI/CD pipeline integration that mechanically enforce
 
 **What it means:** The production site is not working as expected (potential regression).
 
+**Automated Response (SPEC-008):**
+- GitHub issue is **automatically created** when smoke tests fail
+- Issue is labeled: `type:bug`, `severity:high`, `escape`
+- Issue includes deployment info, test failure summary, workflow links
+- Issue appears on SDD pipeline board for PM triage
+- Duplicate prevention: If an issue already exists for this commit, a comment is added instead
+
 **How to respond:**
 
-1. **Assess severity:**
-   - Go to Actions tab → "Post-Deploy Smoke Tests" workflow
-   - Click the failed run → Review workflow summary
-   - Download the test report artifact if available
+1. **Review the auto-created issue:**
+   - Issue will appear in your GitHub notifications
+   - Title format: `[SMOKE TEST FAILURE] Deployment {commit} by {deployer}`
+   - Issue includes all deployment context and failure details
+   - Issue is visible on Projects board with `escape` label
 
-2. **Determine if rollback is needed:**
+2. **Assess severity:**
+   - Go to the workflow run link in the issue
+   - Download the test report artifact if available
+   - Determine impact: Critical, High, Medium, or Low
+
+3. **Determine if rollback is needed:**
    - **Critical failure** (site unreachable, major pages 404): Rollback immediately
    - **Minor failure** (flaky test, non-critical page): Investigate before deciding
    - **False positive** (test bug, not production bug): Fix test in next PR
 
-3. **Execute rollback on Vercel (if needed):**
+4. **Execute rollback on Vercel (if needed):**
    - Go to Vercel dashboard → geekbyte.biz project
    - Go to Deployments tab
    - Find the previous successful deployment
    - Click "..." menu → "Promote to Production"
    - Confirm promotion
    - Verify site is working by manually visiting key pages
+   - Add comment to the auto-created issue documenting the rollback
 
-4. **Create escape incident report:**
-   - If the failure represents a real regression that reached production:
-     - Create `learning/escapes/ESC-INC-XXX.md`
-     - Document what escaped, why tests didn't catch it, root cause
-     - Add to Learning Engine backlog for analysis
-   - If the failure is a false positive (test bug):
-     - No escape report needed
-     - Create a spec to fix the flaky test
+5. **Perform escape assessment (using auto-created issue):**
+   - The issue is pre-labeled as `escape` (production issue not caught pre-deploy)
+   - Review the "Escape Assessment" checklist in the issue
+   - Determine: Did this pass through our pipeline? Which gate should have caught it?
+   - If needed, create escape event: `learning/escapes/YYYY-MM-DD-escape-{issue-number}.md`
+   - Use template: `learning/escapes/escape_event_template.md`
+   - Document: originating spec, gate missed, root cause, prevention measures
+   - If false positive (test bug), remove `escape` label
 
-5. **Fix the root cause:**
+6. **Fix the root cause:**
    - Create a new spec to address the regression
+   - Link the spec to the auto-created issue
    - Follow SDD pipeline (don't skip gates to rush a fix)
    - Use Critical tier if immediate fix required
+   - Mark the auto-created issue as "Assessed and routed" (checkbox in issue body)
 
 ### Common Troubleshooting
 
@@ -346,11 +362,11 @@ If storage becomes an issue:
 
 **Out of scope for SPEC-007, potential future specs:**
 
-- **SPEC-008:** Automated issue creation on smoke test failure (Trivial)
+- **SPEC-008:** ✅ Automated issue creation on smoke test failure (Trivial) — **Deployed 2026-02-05**
 - **SPEC-009:** Slack/email notifications for workflow failures (Trivial)
 - **SPEC-010:** Multi-environment deployments (staging, preview) (Standard)
 - **SPEC-011:** Visual regression testing in CI (Standard)
-- **SPEC-012:** Performance testing in CI (Lighthouse, Core Web Vitals) (Standard)
+- **SPEC-012:** Priority field for Projects board (Trivial)
 - **SPEC-013:** Automated rollback on smoke test failure (Complex)
 - **SPEC-014:** GitHub Projects board automation (Standard)
 
