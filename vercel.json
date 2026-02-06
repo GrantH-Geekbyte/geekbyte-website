@@ -1,0 +1,62 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "geekbyte-website",
+
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+
+  "regions": ["iad1"],
+
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "silent": false
+  },
+
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+
+  "env": {
+    "ENVIRONMENT": "production",
+    "ANALYTICS_ENABLED": "true",
+    "BASE_URL": "https://www.geekbyte.biz"
+  },
+
+  "routes": [
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
