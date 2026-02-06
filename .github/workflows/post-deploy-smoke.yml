@@ -38,6 +38,94 @@ jobs:
           path: playwright-report/
           retention-days: 90
 
+      - name: Create issue on smoke test failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get deployment details
+            const commit = context.payload.deployment.sha.substring(0, 7);
+            const fullCommit = context.payload.deployment.sha;
+            const deployer = context.payload.deployment.creator?.login || 'unknown';
+            const timestamp = context.payload.deployment_status.updated_at;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            // Check for existing issue with this commit SHA to prevent duplicates
+            const existingIssues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'escape',
+              per_page: 100
+            });
+
+            const duplicateIssue = existingIssues.data.find(issue =>
+              issue.title.includes('[SMOKE TEST FAILURE]') &&
+              issue.body.includes(fullCommit)
+            );
+
+            if (duplicateIssue) {
+              // Add comment to existing issue instead of creating duplicate
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: duplicateIssue.number,
+                body: `## Additional Smoke Test Failure\n\n**Timestamp:** ${timestamp}\n**Workflow Run:** ${runUrl}\n\nSmoke tests failed again for this deployment. Check the latest test artifacts for updated failure details.`
+              });
+              console.log(`Added comment to existing issue #${duplicateIssue.number}`);
+            } else {
+              // Create new issue
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[SMOKE TEST FAILURE] Deployment ${commit} by ${deployer}`,
+                labels: ['type:bug', 'severity:high', 'escape'],
+                body: `## Deployment Info
+
+            - **Commit:** ${fullCommit}
+            - **Deployer:** ${deployer}
+            - **Timestamp:** ${timestamp}
+            - **Branch:** ${context.payload.deployment.ref}
+
+            ## Test Failure Summary
+
+            **Production smoke tests failed post-deployment.**
+
+            The automated smoke tests detected failures after deploying to production. This indicates a potential production issue that was not caught by pre-deploy testing.
+
+            ## Links
+
+            - **Workflow Run:** ${runUrl}
+            - **Test Artifacts:** Check the workflow run above for test reports
+
+            ## Production Impact
+
+            ⚠️ Smoke tests failed post-deployment. Production may be affected.
+
+            ## Next Steps
+
+            - [ ] **Assessed and routed** (PM triage)
+            - Review test failure details in the workflow run
+            - Investigate root cause
+            - Determine if this is a new defect, existing known issue, or flaky test
+            - Create bugfix spec if needed
+            - Deploy fix and verify
+
+            ## Escape Assessment
+
+            This issue has been auto-labeled as an \`escape\` because it represents a production issue not caught by pre-deploy tests. PM should assess:
+
+            - **Did this issue pass through our pipeline?** If yes, which gate should have caught it?
+            - **Should an escape event be created?** (Use template: learning/escapes/escape_event_template.md)
+            - **What prevention measure is needed?** (Test coverage, checklist item, etc.)
+
+            ---
+
+            🤖 Auto-created by smoke test failure workflow (SPEC-008)`
+              });
+              console.log(`Created issue #${issue.data.number}`);
+            }
+
       - name: Add workflow summary
         if: always()
         run: |
