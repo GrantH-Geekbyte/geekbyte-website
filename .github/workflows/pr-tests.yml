@@ -43,3 +43,26 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 90
+
+      - name: Notify Slack on failure
+        id: slack-notification
+        if: failure()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "PR Tests Failed",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*🔴 PR Tests Failed*\n*Branch:* ${{ github.ref_name }}\n*Author:* ${{ github.actor }}\n*Commit:* `${{ github.event.pull_request.head.sha }}`\n*PR:* <${{ github.event.pull_request.html_url }}|#${{ github.event.pull_request.number }}>\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Run>"
+                  }
+                }
+              ]
+            }
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
