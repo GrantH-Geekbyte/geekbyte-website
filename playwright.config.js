@@ -49,6 +49,10 @@ module.exports = defineConfig({
     video: 'retain-on-failure',
   },
 
+  // Visual regression snapshot configuration (SPEC-011)
+  // Store baseline screenshots in screenshots/baseline/ directory
+  snapshotPathTemplate: 'screenshots/baseline/{testFilePath}/{arg}{-projectName}{-snapshotSuffix}{ext}',
+
   // Configure projects for major browsers
   projects: [
     {
