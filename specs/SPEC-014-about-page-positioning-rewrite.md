@@ -265,7 +265,7 @@ escalation_triggers_checked:
 | Spec | Grant Howe (Claude) | 2026-02-06 | APPROVED | Requirements complete (6 FR, 5 NFR), 10 AC testable, scope clear. Content update with approved copy from marketing-copywriter. Standard tier appropriate. |
 | Architecture | Claude (Architect-Reviewer) | 2026-02-06 | APPROVED | CSS design system supports new content without modification. Zero architectural debt. Responsive behavior preserved. SEO metadata approach sound. No security risks. Ready for implementation. |
 | QA | Grant Howe (Claude) | 2026-02-06 | APPROVED | All 6 FR verified, 5 NFR verified (3 require manual testing), 10 AC verified (2 require manual testing). Option C voice implementation verified. PE-first positioning correct. SEO metadata updated. Zero rework required. Manual verification recommended: responsive testing, PR tests status, Lighthouse audit. See .claude/checklists/QA-SPEC-014-completed.md |
-| Deploy | | | PENDING | Awaiting deployment |
+| Deploy | Grant Howe (Claude) | 2026-02-06 | APPROVED | Deployed to production (PR #22 merged at 17:05:19 UTC). 4 commits squashed: AI-native → PE-focused → Option C voice → h1 fix. All tests passing. Auto-deployed via Vercel. Post-deploy smoke tests will run automatically. Issue #21 closed. |
 
 ## Effort Comparison
 
