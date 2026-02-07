@@ -33,18 +33,11 @@ jobs:
       - name: Wait for server to be ready
         run: npx wait-on http://localhost:3000 --timeout 30000
 
-      - name: Run Playwright tests (excluding visual regression)
-        run: npx playwright test --project=local tests/e2e/pages.spec.js tests/e2e/navigation.spec.js tests/e2e/accessibility.spec.js tests/e2e/forms.spec.js
+      - name: Run Playwright tests
+        run: npm run test:local
 
-      - name: Regenerate visual baselines on Linux CI
-        run: npm run update-visual-baselines
-
-      - name: Upload regenerated baselines
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-baselines-linux
-          path: screenshots/baseline/
-          retention-days: 7
+      - name: Run visual regression tests
+        run: npm run test:visual
 
       - name: Upload visual diffs on failure
         if: failure()
