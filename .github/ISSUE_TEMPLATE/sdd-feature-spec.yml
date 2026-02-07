@@ -19,6 +19,20 @@ body:
       required: true
 
   - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: Select priority level (see governance/sdd-team-operations.md for definitions)
+      options:
+        - P1 (Critical)
+        - P2 (High)
+        - P3 (Medium)
+        - P4 (Low)
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
     id: complexity_tier
     attributes:
       label: Complexity Tier

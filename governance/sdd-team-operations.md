@@ -257,6 +257,86 @@ Shows: All specs that failed a gate and need rework
 
 ---
 
+## Priority Levels
+
+Specs are triaged using a 4-level priority system. Priority determines execution order
+and sprint planning. When in doubt, default to P3 (Medium) and escalate to PM for triage.
+
+### P1 (Critical)
+**Ship ASAP (same day if possible)**
+- Production incident (site down, major functionality broken)
+- User-blocking bug (feature advertised but non-functional)
+- Security vulnerability (discovered exploit, dependency CVE)
+- Foundational dependency (multiple specs blocked until this completes)
+- External deadline (stakeholder presentation, investor demo, contract obligation)
+
+**Examples:**
+- SPEC-001: Fix About Page (404 on advertised page — user-blocking)
+- Post-launch incident: payment gateway broken (SaaS product)
+- Security: XSS vulnerability reported by penetration tester
+
+### P2 (High)
+**Ship within current sprint (1-2 weeks)**
+- High-value feature (significant ROI or stakeholder request)
+- Pipeline efficiency improvement (saves 30+ min per spec)
+- Infrastructure foundational to roadmap (enables future P1 features)
+- Observability/monitoring improvement (reduces MTTD/MTTR by 50%+)
+- Quality gate improvement (prevents escapes or defects)
+
+**Examples:**
+- SPEC-008: Automated Issue Creation on Smoke Test Failure (observability + efficiency)
+- SPEC-009: Slack Notifications for Workflow Failures (reduces MTTD)
+- SPEC-013: Automated Rollback on Smoke Test Failure (production safety, reduces MTTR)
+- New service page with stakeholder deadline (e.g., board meeting presentation)
+
+### P3 (Medium)
+**Ship when capacity allows (backlog, pulled into sprint as needed)**
+- Standard feature (adds value but not urgent)
+- Enhancement to existing feature (improves UX or performance)
+- Infrastructure improvement (nice-to-have, not blocking)
+- Refactoring (code quality improvement without user-facing change)
+- Documentation update (governance, runbooks, onboarding guides)
+
+**Examples:**
+- SPEC-010: Multi-Environment Deployments (infrastructure improvement)
+- SPEC-011: Visual Regression Testing in CI (quality improvement)
+- SPEC-012: Add Priority Field to Projects Board (planning improvement)
+- Blog post feature (content-driven, no external deadline)
+
+### P4 (Low)
+**Ship when all P1/P2/P3 specs complete or when strategic value increases**
+- Nice-to-have (low ROI, speculative)
+- Deferred exploration (research spike, proof-of-concept)
+- Future product feature (not relevant until product launches)
+- Cosmetic change (visual polish with no functional impact)
+- Optimization (performance improvement with < 10% gain)
+
+**Examples:**
+- Dark mode toggle (cosmetic, no user requests)
+- Newsletter archive page (content feature, low traffic)
+- Speculative AI agent conversational UI (future product, deferred)
+
+### Triage Guidelines
+
+**When creating a new spec:**
+1. Read the spec business goal and success metrics
+2. Ask: "Is this blocking production, users, or stakeholders?" → P1
+3. Ask: "Does this deliver high value within 1-2 weeks?" → P2
+4. Ask: "Is this standard feature/enhancement work?" → P3
+5. Ask: "Is this nice-to-have or future exploration?" → P4
+6. If uncertain, default to P3 and tag PM for triage
+
+**Priority escalation triggers:**
+- P3 → P2: External stakeholder requests feature for upcoming demo
+- P3 → P1: Bug discovered in production (was enhancement, now incident)
+- P4 → P2: Strategic shift (future product feature becomes current priority)
+
+**Priority de-escalation triggers:**
+- P2 → P3: Stakeholder deadline postponed
+- P1 → P2: Workaround discovered (incident mitigated, fix can wait)
+
+---
+
 ## Metrics Tracking
 
 Each issue should have custom fields populated (configured in GitHub Projects):
