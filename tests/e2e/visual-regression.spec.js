@@ -57,9 +57,9 @@ test.describe('Visual Regression', () => {
 
         await expect(page).toHaveScreenshot(screenshotName, {
           fullPage: true,
-          // 1% pixel tolerance: handles anti-aliasing and minor rendering differences
-          // Calculated as maxDiffPixelRatio (1% = 0.01)
-          maxDiffPixelRatio: 0.01,
+          // 5% pixel tolerance: handles cross-platform font rendering and anti-aliasing differences
+          // Windows vs Linux can have up to 3-5% difference in text rendering
+          maxDiffPixelRatio: 0.05,
           // Animation handling: disable animations to prevent flakiness
           animations: 'disabled',
         });
