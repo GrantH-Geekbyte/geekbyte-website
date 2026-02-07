@@ -9,6 +9,8 @@
     "test:live": "playwright test --project=live",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui",
+    "test:visual": "playwright test tests/e2e/visual-regression.spec.js --project=local",
+    "update-visual-baselines": "playwright test tests/e2e/visual-regression.spec.js --project=local --update-snapshots",
     "serve": "serve . -p 3000"
   },
   "devDependencies": {

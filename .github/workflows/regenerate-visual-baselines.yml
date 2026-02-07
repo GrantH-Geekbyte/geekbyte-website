@@ -1,0 +1,57 @@
+name: Regenerate Visual Baselines
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to update baselines on'
+        required: true
+        default: 'spec/SPEC-011-visual-regression-testing'
+
+jobs:
+  regenerate-baselines:
+    name: Regenerate Visual Regression Baselines
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Start dev server
+        run: npm run serve &
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000 --timeout 30000
+
+      - name: Regenerate visual baselines
+        run: npm run update-visual-baselines
+
+      - name: Commit updated baselines
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add screenshots/
+          if git diff --staged --quiet; then
+            echo "No changes to baselines"
+          else
+            git commit -m "[SPEC-011] Regenerate visual baselines on Linux CI
+
+            Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+            git push origin ${{ github.event.inputs.branch }}
+          fi

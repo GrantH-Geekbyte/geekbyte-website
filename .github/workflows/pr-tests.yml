@@ -36,6 +36,17 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:local
 
+      - name: Run visual regression tests
+        run: npm run test:visual
+
+      - name: Upload visual diffs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression-diffs
+          path: test-results/
+          retention-days: 30
+
       - name: Upload test report on failure
         if: failure()
         uses: actions/upload-artifact@v4
