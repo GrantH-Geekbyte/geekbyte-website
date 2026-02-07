@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Options Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Inter, system-ui, sans-serif;
+            background: #f8fafc;
+            padding: 2rem;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #0a1628;
+            margin-bottom: 2rem;
+        }
+        .preview-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .option {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .option h2 {
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .option p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+        .nav-mockup {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-mockup .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-mockup .logo-area img.gator-icon {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .nav-mockup .logo-area .wordmark {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .nav-mockup .logo-area .wordmark .geek {
+            color: #0a1628;
+        }
+        .nav-mockup .logo-area .wordmark .byte {
+            color: #2563eb;
+        }
+        .nav-mockup span {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        .nav-mockup span.active {
+            color: #1e40af;
+            font-weight: 600;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-left: auto;
+        }
+
+        /* Option 1 - circular crop with gold border */
+        .option1 .gator-icon {
+            border-radius: 50% !important;
+            border: 2px solid #c5a05e;
+        }
+
+        /* Option 2 - square with subtle border */
+        .option2 .gator-icon {
+            border-radius: 8px !important;
+            border: 2px solid #c5a05e;
+        }
+
+        /* Option 3 - no border, blends in */
+        .option3 .gator-icon {
+            border-radius: 4px !important;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gator Logo Options - Using Your Artwork</h1>
+    <div class="preview-container">
+
+        <div class="option option1">
+            <h2>Option 1 - Circular Gator Icon + Text</h2>
+            <p>Your gator in a circular frame with blue border. Clean and professional.</p>
+            <div class="nav-mockup">
+                <div class="logo-area">
+                    <img src="images/logos/brand/geekbyte-logo.png" alt="Geekbyte Gator" class="gator-icon">
+                    <span class="wordmark"><span class="geek">GEEK</span><span class="byte">BYTE</span></span>
+                </div>
+                <div class="nav-links">
+                    <span class="active">Home</span>
+                    <span>Fractional CTO</span>
+                    <span>Board Advisory</span>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="option option2">
+            <h2>Option 2 - Rounded Square with Gold Border</h2>
+            <p>Your gator in a rounded square with gold accent border. More distinctive.</p>
+            <div class="nav-mockup">
+                <div class="logo-area">
+                    <img src="images/logos/brand/geekbyte-logo.png" alt="Geekbyte Gator" class="gator-icon">
+                    <span class="wordmark"><span class="geek">GEEK</span><span class="byte">BYTE</span></span>
+                </div>
+                <div class="nav-links">
+                    <span class="active">Home</span>
+                    <span>Fractional CTO</span>
+                    <span>Board Advisory</span>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="option option3">
+            <h2>Option 3 - Subtle Square (No Border)</h2>
+            <p>Your gator with minimal styling - just a subtle shadow. Lets the art speak.</p>
+            <div class="nav-mockup">
+                <div class="logo-area">
+                    <img src="images/logos/brand/geekbyte-logo.png" alt="Geekbyte Gator" class="gator-icon">
+                    <span class="wordmark"><span class="geek">GEEK</span><span class="byte">BYTE</span></span>
+                </div>
+                <div class="nav-links">
+                    <span class="active">Home</span>
+                    <span>Fractional CTO</span>
+                    <span>Board Advisory</span>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="option">
+            <h2>Current Logo (for comparison)</h2>
+            <p>The existing hexagon/circuit SVG wordmark.</p>
+            <div class="nav-mockup">
+                <div class="logo-area">
+                    <img src="images/logos/geekbyte-wordmark.svg" alt="Current" style="height: 40px;">
+                </div>
+                <div class="nav-links">
+                    <span class="active">Home</span>
+                    <span>Fractional CTO</span>
+                    <span>Board Advisory</span>
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
