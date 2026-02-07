@@ -9,6 +9,10 @@ test-results/
 playwright-report/
 playwright/.cache/
 
+# Visual regression testing
+# Note: screenshots/baseline/ is intentionally NOT ignored
+# Baseline screenshots are committed to git for version control
+
 # IDE and editor files
 .vscode/
 .idea/

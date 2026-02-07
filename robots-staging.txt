@@ -1,0 +1,5 @@
+# Robots.txt for Geekbyte LLC - STAGING ENVIRONMENT
+# Blocks all crawlers to prevent staging content from being indexed
+
+User-agent: *
+Disallow: /
