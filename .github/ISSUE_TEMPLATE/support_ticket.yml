@@ -1,0 +1,84 @@
+name: Support Ticket
+description: Report an issue with the GeekByte website or services
+title: "[SUPPORT] "
+labels: ["type:support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue. This template helps us triage and resolve your issue quickly.
+
+  - type: input
+    id: reporter
+    attributes:
+      label: Reporter Name / Contact
+      description: Your name and how we can reach you (email or preferred contact method)
+      placeholder: "John Doe (john@example.com)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description
+      description: Describe the issue you're experiencing
+      placeholder: "When I try to..., the page..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: If applicable, list the steps to reproduce this issue
+      placeholder: |
+        1. Go to...
+        2. Click on...
+        3. See error...
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severely is this issue impacting you?
+      options:
+        - Critical (Site down, major functionality broken)
+        - High (Significant feature not working)
+        - Medium (Feature partially working or workaround available)
+        - Low (Minor issue, cosmetic, or enhancement request)
+      default: 2
+    validations:
+      required: true
+
+  - type: input
+    id: affected
+    attributes:
+      label: Affected Page or Feature
+      description: Which page or feature is affected?
+      placeholder: "Home page, Contact form, About page"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Browser / Device
+      description: If relevant, what browser and device are you using?
+      placeholder: "Chrome 120 on Windows 11, Safari on iPhone 15"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information that might help us resolve this issue?
+      placeholder: "Screenshots, error messages, related issues..."
+    validations:
+      required: false

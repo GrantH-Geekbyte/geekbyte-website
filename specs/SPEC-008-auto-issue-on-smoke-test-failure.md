@@ -3,7 +3,7 @@
 spec_id: SPEC-008
 title: Automated Issue Creation on Smoke Test Failure
 version: 1.0
-status: pending
+status: deployed
 complexity_tier: trivial
 last_updated: 2026-02-05
 
