@@ -94,20 +94,19 @@ test.describe('Forms Responsive', () => {
     await expect(submitButton).toBeVisible();
   });
 
-  test('campaign form is usable on mobile', async ({ page }) => {
+  test('campaign download button is usable on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/campaigns/ai-ceo-brief.html');
 
-    // Form should be visible
-    await expect(page.locator('form')).toBeVisible();
+    // Download button should be visible (SPEC-014: removed form, added direct download)
+    const downloadBtn = page.locator('a[download]');
+    await expect(downloadBtn).toBeVisible();
 
-    // Form inputs should be visible
-    const inputs = await page.locator('form input[type="text"], form input[type="email"], form select').all();
-    expect(inputs.length).toBeGreaterThan(0);
+    // Download button should have correct PDF path
+    await expect(downloadBtn).toHaveAttribute('href', 'downloads/AI_Transformation_Executive_Brief_Geekbyte.pdf');
 
-    // Submit button should be visible
-    const submitButton = page.locator('button[type="submit"], input[type="submit"]');
-    await expect(submitButton).toBeVisible();
+    // Button should be clickable on mobile
+    await expect(downloadBtn).toHaveClass(/btn-primary/);
   });
 });
 
