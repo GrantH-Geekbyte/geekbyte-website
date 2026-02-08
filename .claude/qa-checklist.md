@@ -2,6 +2,12 @@
 
 ## Pre-Commit Checks
 
+### Test Coverage Impact
+- [ ] Identify test files covering modified/removed features
+- [ ] Update or remove affected test files
+- [ ] Verify no orphaned test fixtures or mocks
+- [ ] Run full test suite locally before pushing (`npm test`)
+
 ### Forms
 - [ ] Test form submission on local/staging environment
 - [ ] Verify third-party service URLs match documented format (e.g., Formspree)
