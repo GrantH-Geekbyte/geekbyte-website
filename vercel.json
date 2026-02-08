@@ -29,13 +29,6 @@
     "BASE_URL": "https://www.geekbyte.biz"
   },
 
-  "routes": [
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
-    }
-  ],
-
   "headers": [
     {
       "source": "/(.*)",
