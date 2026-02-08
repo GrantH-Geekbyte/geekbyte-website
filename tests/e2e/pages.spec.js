@@ -128,11 +128,11 @@ test.describe('Contact Page', () => {
 });
 
 test.describe('Campaign Landing Page', () => {
-  test('campaign page has form and content', async ({ page }) => {
+  test('campaign page has download button and content', async ({ page }) => {
     await page.goto('/campaigns/ai-ceo-brief.html');
 
-    // Should have a form
-    await expect(page.locator('form')).toBeVisible();
+    // Should have a download button (SPEC-014: removed form, added direct download)
+    await expect(page.locator('a[download]')).toBeVisible();
 
     // Should have compelling content
     const headings = await page.locator('h1, h2').count();
