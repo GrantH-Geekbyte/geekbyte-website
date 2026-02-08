@@ -36,8 +36,8 @@ jobs:
         run: |
           echo "Testing staging deployment at: $STAGING_URL"
           npx playwright test tests/e2e/pages.spec.js tests/e2e/navigation.spec.js \
-            --project=chromium \
-            --base-url=$STAGING_URL
+            --project=live \
+            --base-url "$STAGING_URL"
 
       - name: Upload test report on failure
         if: failure()
