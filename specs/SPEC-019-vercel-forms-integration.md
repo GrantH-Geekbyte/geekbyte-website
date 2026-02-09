@@ -1,11 +1,12 @@
 # Feature Specification
 
 spec_id: SPEC-019
-title: Replace Formspree with Vercel Forms
-version: 1.0
-status: draft
-complexity_tier: trivial
+title: Replace Formspree with Vercel Serverless Function + Resend
+version: 2.0
+status: deployed
+complexity_tier: standard (upgraded from trivial due to serverless implementation)
 last_updated: 2026-02-09
+deployed_date: 2026-02-09
 
 ## Business Context
 
@@ -300,10 +301,30 @@ Submitted: 2026-02-09 10:30:45 UTC
 
 **Note:** Lower speedup than typical due to simplicity of task (minimal code changes, mostly configuration). AI advantage is minimal for trivial-tier work.
 
-**Actual Time Tracking:** To be populated post-implementation.
-- Actual AI Time: TBD
-- Actual Human Estimate: TBD
-- Actual Speedup Factor: TBD
+**Actual Time Tracking:**
+
+| Stage | AI Time (Actual) | Human Estimate | Notes |
+|-------|------------------|----------------|-------|
+| **Spec Writing** | 20 min | 45-60 min | Retroactive spec, documented incorrect assumption about Vercel Forms |
+| **Architecture Review** | Skipped initially | 30-45 min | **Escaped Defect:** Assumed Vercel Forms existed without verification |
+| **Implementation v1** | 30 min | 45 min | Implemented non-existent "Vercel Forms" - incorrect approach |
+| **Pivot to Serverless** | 60 min | 1.5 hours | Created api/contact.js with Resend API integration, updated tests |
+| **Troubleshooting** | 90 min | 2 hours | Domain verification issue (30m), FormData vs JSON parsing bug (30m), deployment verification (30m) |
+| **API Key Security** | 15 min | 10 min | Revoked exposed API key, created new one |
+| **Final Deployment** | 30 min | 20 min | Multiple PR iterations (PRs #32-35), cache clearing, final verification |
+| **Total** | **~3.75 hours** | **5-6 hours** | **AI Speedup: ~1.5x** (significantly lower than 3x estimate due to escaped defects) |
+
+**Escaped Defects:**
+1. **Incorrect Assumption:** SPEC-019 based on assumption that Vercel had a "Vercel Forms" feature (like Netlify Forms). This feature doesn't exist.
+2. **Premature Implementation:** Implementation started before architecture review verified feasibility
+3. **Testing Before Deployment:** Multiple instances of asking user to test before verifying production deployment
+4. **API Key Exposure:** User posted API key in conversation before security warning given
+
+**Actual Speedup: ~1.5x** vs estimated 3x - Significantly lower due to:
+- Wrong approach requiring complete pivot
+- Multiple escaped defects requiring fixes
+- Extensive troubleshooting (domain, FormData/JSON, caching)
+- 4 separate PRs instead of 1
 
 ## Open Questions
 
