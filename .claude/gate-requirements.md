@@ -144,6 +144,9 @@ Validate production readiness and successful deployment.
 - [x] **Total** row calculated with sum of actuals
 - [x] **AI Speedup** ratio calculated (Human Estimate / AI Actual)
 - [x] Post-deployment notes added (if deployment issues occurred)
+- [x] **Spec status updated to "deployed"** (no longer "draft" or "in progress")
+- [x] **Deployed date recorded** in spec header
+- [x] **Version bumped** if implementation differs significantly from original spec
 
 **Final Effort Comparison Example:**
 ```markdown
@@ -161,12 +164,42 @@ Validate production readiness and successful deployment.
 - [x] All times are actual measurements (not estimates)
 - [x] Speedup ratio calculated and documented
 - [x] Major variances explained in notes
+- [x] Spec status is "deployed" (not "draft" or "in progress")
+- [x] Deployed date recorded in spec header
+- [x] Version number updated if needed
 
 **Rejection Criteria:**
 - Any "TBD" values remaining
 - Missing actual times
 - Speedup ratio not calculated
 - Deployment time not recorded
+- **Spec status still shows "draft" or "in progress"**
+- **Missing deployed_date in spec header**
+
+### Updating Spec Status
+
+**When deployment succeeds, update spec header:**
+
+```yaml
+spec_id: SPEC-NNN
+title: [Title - update if implementation differs]
+version: [Bump if implementation differs significantly]
+status: deployed  # ← Update from "draft"
+complexity_tier: [Update if complexity changed during implementation]
+last_updated: YYYY-MM-DD
+deployed_date: YYYY-MM-DD  # ← Add this
+```
+
+**Status Values:**
+- `draft` - Spec written, not yet implemented
+- `in_progress` - Implementation started
+- `deployed` - Successfully deployed to production
+- `deprecated` - Replaced by newer spec
+
+**Version Bumping:**
+- Bump version if actual implementation differs significantly from spec
+- Example: SPEC-019 v1.0 (Vercel Forms) → v2.0 (Serverless + Resend)
+- Minor changes don't require version bump
 
 ---
 
