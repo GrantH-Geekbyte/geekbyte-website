@@ -12,13 +12,16 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Contact Form Validation', () => {
   test.beforeEach(async ({ page }) => {
-    // Mock Vercel Forms endpoint to prevent actual submissions
-    await page.route('**/contact.html', route => {
+    // Mock serverless function endpoint to prevent actual submissions
+    await page.route('**/api/contact', route => {
       if (route.request().method() === 'POST') {
         route.fulfill({
-          status: 202,
+          status: 200,
           contentType: 'application/json',
-          body: JSON.stringify({ message: 'Form submitted successfully' }),
+          body: JSON.stringify({
+            success: true,
+            message: 'Form submitted successfully'
+          }),
         });
       } else {
         route.continue();
@@ -110,14 +113,12 @@ test.describe('Contact Form Validation', () => {
     // (Exact behavior depends on site implementation)
   });
 
-  test('form configured for Vercel Forms', async ({ page }) => {
+  test('form submits to serverless function', async ({ page }) => {
     const form = page.locator('form');
-    const dataStaticFormName = await form.getAttribute('data-static-form-name');
-    const formNameInput = page.locator('input[name="form-name"]');
+    const formAction = await form.getAttribute('action');
 
-    // Verify form has Vercel Forms attributes
-    expect(dataStaticFormName).toBe('contact');
-    await expect(formNameInput).toHaveValue('contact');
+    // Verify form submits to /api/contact
+    expect(formAction).toBe('/api/contact');
   });
 
   test('required fields are marked as required', async ({ page }) => {
