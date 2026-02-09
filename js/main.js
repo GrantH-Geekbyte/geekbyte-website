@@ -51,11 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
 
             // Submit to serverless function
+            const formData = new FormData(contactForm);
+            const jsonData = Object.fromEntries(formData.entries());
+
             fetch('/api/contact', {
                 method: 'POST',
-                body: new FormData(contactForm),
+                body: JSON.stringify(jsonData),
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => response.json())
