@@ -1,11 +1,12 @@
 # Feature Specification
 
 spec_id: SPEC-019
-title: Replace Formspree with Vercel Forms
-version: 1.0
-status: draft
-complexity_tier: trivial
+title: Replace Formspree with Vercel Serverless Function + Resend
+version: 2.0
+status: deployed
+complexity_tier: standard (upgraded from trivial due to serverless implementation)
 last_updated: 2026-02-09
+deployed_date: 2026-02-09
 
 ## Business Context
 
