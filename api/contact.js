@@ -122,7 +122,7 @@ Submitted from geekbyte.biz contact form
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Geekbyte Contact Form <noreply@geekbyte.biz>',
+        from: 'Geekbyte Contact Form <onboarding@resend.dev>',
         to: [CONTACT_EMAIL],
         reply_to: email,
         subject: emailSubject,
