@@ -101,7 +101,12 @@
                 <div class="contact-wrapper">
                     <div class="contact-form">
                         <h3>Start the Conversation</h3>
-                        <form id="contactForm" action="https://formspree.io/f/mbdrppqp" method="POST">
+                        <form id="contactForm" data-static-form-name="contact" method="POST">
+                            <!-- Vercel Forms hidden fields -->
+                            <input type="hidden" name="form-name" value="contact" />
+                            <!-- Honeypot for spam protection (hidden from users) -->
+                            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
                             <div class="form-group">
                                 <label for="name">Name *</label>
                                 <input type="text" id="name" name="name" required>

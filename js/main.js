@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Submit to Formspree
-            fetch(contactForm.action, {
+            // Submit to Vercel Forms
+            fetch(window.location.pathname, {
                 method: 'POST',
                 body: new FormData(contactForm),
                 headers: {
@@ -59,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .then(response => {
-                if (response.ok) {
+                // Vercel Forms returns 202 Accepted on success
+                if (response.ok || response.status === 202) {
                     // Track contact form submission in GA4
                     if (window.gtag) {
                         gtag('event', 'form_submit', {
