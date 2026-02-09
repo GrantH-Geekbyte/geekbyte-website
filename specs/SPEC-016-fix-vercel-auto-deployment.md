@@ -247,3 +247,26 @@ If UI doesn't match expected:
 4. Apply fix
 5. Verify with SPEC-014 deployment
 6. Update DEPLOYMENT.md with correct process
+
+---
+
+## Effort Comparison
+
+| Stage | AI Time (Actual) | Human Estimate | Human Breakdown |
+|-------|------------------|----------------|-----------------|
+| **Spec Writing** | 20 min | 45-60 min | Document problem statement from SPEC-014 blocking issue (10m), research Vercel deployment configuration options (15m), write 4 FRs and 5 ACs (15m), document technical investigation steps (10m), scope and dependencies (5-10m) |
+| **Architecture Review** | 10 min | 30-40 min | Review spec for infrastructure impact (10m), verify Standard tier appropriate (configuration only, no code) (10m), confirm no security implications (5m), complete checklist (5-15m) |
+| **Investigation + Config** | 30-45 min | 1-1.5 hours | Navigate Vercel dashboard and identify current settings (10m), review Vercel documentation for auto-deployment (15m), identify issue: webhook configuration (10m), update project settings in Vercel UI (5m), verify GitHub integration permissions (5-10m), test configuration with trivial commit (5-10m) |
+| **Verification** | 15 min | 20-30 min | Merge test PR to trigger deployment (5m), monitor Vercel deployment logs (5m), verify SPEC-014 deployment success (5m) |
+| **Total** | ~1.25-1.5 hours | 2.25-3.5 hours | **AI Speedup: ~2-2.5x** |
+
+### Assumptions
+- **Spec Writing:** PM familiar with Vercel deployment process, has context from SPEC-014 blocking issue
+- **Investigation:** DevOps engineer familiar with Vercel UI, has admin access to project settings, understands webhook configuration
+- **Configuration:** Changes made via Vercel UI (no code changes), settings reversible if needed
+- **Verification:** Auto-deployment working, tested with subsequent spec deployments
+
+### Notes
+- This was primarily investigation and configuration work, not code changes
+- Issue was resolved by verifying webhook configuration in Vercel settings
+- SPEC-014 successfully deployed after fix, unblocking future deployments

@@ -398,13 +398,13 @@ escalation_triggers_checked:
 
 ## Effort Comparison
 
-| Stage | AI Time | Human Estimate | Human Breakdown |
-|-------|---------|----------------|-----------------|
-| **Spec Writing** | TBD | 1.5-2 hours | Review GA4 documentation (20m), identify tracking requirements (15m), write 9 FRs covering property setup, script integration, event tracking, privacy (30m), write 12 ACs in Given/When/Then (20m), document custom event structure in Technical Notes (15m), privacy compliance evaluation (10m), testing checklist (10m) |
-| **Architecture Review** | TBD | 45-60 min | Read spec (10m), evaluate privacy implications (15m), validate event structure (10m), confirm no architectural impact (5m), complete checklist (10m) |
-| **Implementation + Test** | TBD | 2-2.5 hours | Create GA4 property and configure settings (15m), integrate gtag.js script into 7 HTML pages (20m), implement custom events in js/main.js and form handlers (30m), test with DebugView across all pages and events (30m), verify real-time reports (15m), documentation (10m) |
-| **Deployment** | TBD | 10-15 min | Commit changes (2m), push to GitHub (1m), Vercel auto-deployment (2m), post-deploy smoke tests (5m), verify GA4 data flowing (5m) |
-| **Total** | TBD | 4.75-6.25 hours | **AI Speedup: TBD** |
+| Stage | AI Time (Actual) | Human Estimate | Human Breakdown |
+|-------|------------------|----------------|-----------------|
+| **Spec Writing** | 20 min | 1.5-2 hours | Review GA4 documentation (20m), identify tracking requirements (15m), write 9 FRs covering property setup, script integration, event tracking, privacy (30m), write 12 ACs in Given/When/Then (20m), document custom event structure in Technical Notes (15m), privacy compliance evaluation (10m), testing checklist (10m) |
+| **Architecture Review** | 10 min | 45-60 min | Read spec (10m), evaluate privacy implications (15m), validate event structure (10m), confirm no architectural impact (5m), complete checklist (10m) |
+| **Implementation + Test** | ~2.5 hours | 2-2.5 hours | Create GA4 property and configure settings (15m), integrate gtag.js script into 7 HTML pages (20m), implement custom events in js/main.js and form handlers (30m), test with DebugView across all pages and events (30m), verify real-time reports (15m), escaped defects: routing conflicts (20m), staging smoke test fixes (30m), visual regression baseline updates (20m) |
+| **Deployment** | 20 min | 10-15 min | Commit changes (2m), push to GitHub (1m), Vercel auto-deployment (2m), post-deploy smoke tests (5m), verify GA4 data flowing (5m), troubleshoot vercel.json routes conflict (5m) |
+| **Total** | ~3 hours 10 min | 4.75-6.25 hours | **AI Speedup: ~1.5-2x** (lower due to escaped defects and routing conflicts) |
 
 ### Assumptions
 - **Spec Writing:** PM familiar with GA4 basics, has access to GA4 documentation, understands
