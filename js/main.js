@@ -60,6 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if (response.ok) {
+                    // Track contact form submission in GA4
+                    if (window.gtag) {
+                        gtag('event', 'form_submit', {
+                            'form_name': 'contact_form',
+                            'form_location': 'contact_page'
+                        });
+                    }
                     showMessage('Thank you for your message! We will get back to you soon.', 'success');
                     contactForm.reset();
                 } else {
@@ -119,6 +126,34 @@ document.addEventListener('DOMContentLoaded', function() {
         if (linkPath === currentLocation) {
             link.classList.add('active');
         }
+    });
+
+    // ==========================================
+    // Google Analytics 4 - Service Page View Tracking
+    // ==========================================
+    const servicePath = window.location.pathname;
+    if (servicePath.includes('/services/')) {
+        let serviceName = servicePath.split('/').pop().replace('.html', '');
+        if (window.gtag) {
+            gtag('event', 'view_service', {
+                'service_name': serviceName.replace(/-/g, '_')
+            });
+        }
+    }
+
+    // ==========================================
+    // Google Analytics 4 - CTA Click Tracking
+    // ==========================================
+    const ctaButtons = document.querySelectorAll('.btn-primary, .btn-secondary, a[href*="contact"]');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            if (window.gtag) {
+                gtag('event', 'cta_click', {
+                    'cta_text': this.textContent.trim(),
+                    'cta_location': document.title
+                });
+            }
+        });
     });
 
     // ==========================================

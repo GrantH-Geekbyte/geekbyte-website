@@ -68,7 +68,8 @@ module.exports = defineConfig({
       name: 'live',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'https://geekbyte.biz',
+        // Allow base URL override via environment variable (for CI/staging)
+        baseURL: process.env.BASE_URL || 'https://geekbyte.biz',
       },
       // Only run smoke tests against live site (pages and navigation)
       testMatch: /.*\/(pages|navigation)\.spec\.js/,
