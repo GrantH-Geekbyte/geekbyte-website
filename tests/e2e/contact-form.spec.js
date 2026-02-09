@@ -12,13 +12,17 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Contact Form Validation', () => {
   test.beforeEach(async ({ page }) => {
-    // Mock Formspree endpoint to prevent actual submissions
-    await page.route('https://formspree.io/f/**', route => {
-      route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ ok: true, next: 'https://formspree.io/thanks' }),
-      });
+    // Mock Vercel Forms endpoint to prevent actual submissions
+    await page.route('**/contact.html', route => {
+      if (route.request().method() === 'POST') {
+        route.fulfill({
+          status: 202,
+          contentType: 'application/json',
+          body: JSON.stringify({ message: 'Form submitted successfully' }),
+        });
+      } else {
+        route.continue();
+      }
     });
 
     await page.goto('/contact.html');
@@ -106,12 +110,14 @@ test.describe('Contact Form Validation', () => {
     // (Exact behavior depends on site implementation)
   });
 
-  test('form action points to Formspree', async ({ page }) => {
+  test('form configured for Vercel Forms', async ({ page }) => {
     const form = page.locator('form');
-    const action = await form.getAttribute('action');
+    const dataStaticFormName = await form.getAttribute('data-static-form-name');
+    const formNameInput = page.locator('input[name="form-name"]');
 
-    // Verify form submits to Formspree
-    expect(action).toContain('formspree.io');
+    // Verify form has Vercel Forms attributes
+    expect(dataStaticFormName).toBe('contact');
+    await expect(formNameInput).toHaveValue('contact');
   });
 
   test('required fields are marked as required', async ({ page }) => {
