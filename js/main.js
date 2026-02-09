@@ -50,17 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            // Submit to Vercel Forms
-            fetch(window.location.pathname, {
+            // Submit to serverless function
+            fetch('/api/contact', {
                 method: 'POST',
                 body: new FormData(contactForm),
                 headers: {
                     'Accept': 'application/json'
                 }
             })
-            .then(response => {
-                // Vercel Forms returns 202 Accepted on success
-                if (response.ok || response.status === 202) {
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     // Track contact form submission in GA4
                     if (window.gtag) {
                         gtag('event', 'form_submit', {
@@ -71,13 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     showMessage('Thank you for your message! We will get back to you soon.', 'success');
                     contactForm.reset();
                 } else {
-                    response.json().then(data => {
-                        if (data.errors) {
-                            showMessage(data.errors.map(err => err.message).join(', '), 'error');
-                        } else {
-                            showMessage('There was an error sending your message. Please try again.', 'error');
-                        }
-                    });
+                    if (data.errors) {
+                        showMessage(data.errors.join(', '), 'error');
+                    } else {
+                        showMessage(data.error || 'There was an error sending your message. Please try again.', 'error');
+                    }
                 }
             })
             .catch(error => {
